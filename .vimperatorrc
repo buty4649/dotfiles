@@ -8,7 +8,7 @@ set visualbell
 highlight Bell display:none
 
 " 自動フォーカスの無効化
-set nofocuscontent
+set focuscontent
 
 " URL補完はブックマークとサジェストのみ
 set complete=bs
