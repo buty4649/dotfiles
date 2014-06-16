@@ -1,0 +1,144 @@
+" 基本的な設定 ============================================
+
+" ブラウザのタイトル
+set titlestring=Firefox
+
+" Beep無効化
+set visualbell
+highlight Bell display:none
+
+" 自動フォーカスの無効化
+set nofocuscontent
+
+" URL補完はブックマークとサジェストのみ
+set complete=bs
+
+" viステータスバーからロケーション情報を消す
+set status-=location
+
+" リンクヒントに使用する文字列(1文字目は無視される)
+" http://blog.ruedap.com/2011/03/27/vimperator3-hint-mode-alphabet-uppercase
+set hintchars=ifjklasdhguonmerwc
+
+
+" IME制御 --------------------------------------------------
+" http://vimperator.g.hatena.ne.jp/teramako/20090311/1236776437
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+
+" コマンド設定 ============================================
+
+" Normal mode ---------------------------------------------
+" B : バッファー一覧
+noremap B b
+
+" H : 次のタブへ移動
+noremap H gT
+
+" J : 1行分下がる
+noremap J j
+
+" K : 1行分上がる
+noremap K k
+
+" L : 前のタブへ移動
+noremap L gt
+
+" T : tabopen コマンド
+noremap T :tabopen<Space>
+
+" Y : タイトル + URLをコピー
+map <silent> Y :copy %TITLE% %URL%<CR>
+
+" b : ブックマークを選択
+noremap b :bmarks!<Space>
+
+" d : 今のウインドウを閉じて直前のタブに移動
+noremap d <M-w>
+
+" h : 左に5スクロール
+noremap h 5h
+
+" j : 3行分下がる
+noremap j 3j
+
+" k : 3行分上がる
+noremap k 3k
+
+" l : 右に5スクロール
+noremap l 5l
+
+" t : 新しいタブでGoogle検索
+map t :tabopen<Space>google<Space>
+
+" u : undoコマンド
+map u :undo<Space>
+
+" y : 何もしない
+map <silent> y :copy %URL%<CR>
+
+" ,R : .vimperatorrcを再読み込み
+map <silent> ,R :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/.vimperatorrc<CR>
+
+" Ctrl+C : コピー
+noremap <C-c> Y
+
+" Ctrl+H : 一つ次のページへ戻る
+noremap <C-h> H
+
+" Ctrl+L : 一つ前のページへ戻る
+noremap <C-l> L
+
+" Ctrl+T : 前に開いていたページを開く
+noremap <Silent> <C-t> :buffer! #<CR>
+
+" Alt+↓ : メニュー表示
+"""map <silent> <A-Down> :set go+=m<CR>
+
+" Alt+↑ : メニュー非表示
+"""map <silent> <A-Up> :set go-=m<CR>
+
+" Command-Line mode ---------------------------------------------
+" 矢印キーで補完リストを選択
+cmap <Up> <S-TAB>
+cmap <Down> <TAB>
+
+" Bash風のキーバインド
+cmap <C-p> <S-TAB>
+cmap <C-n> <TAB>
+
+" プラグイン設定 ==========================================
+" plugin_loader
+let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/"
+let g:plugin_loader_plugins = "_libly,feedSomeKeys_3,copy"
+
+" feedSomeKeys --------------------------------------------
+" feedly用の設定
+fmaps -u='feedly\.com' j k n p m o s v A r S N P X O gh ga gs gt gu u / ? J K
+
+" TweetDeck用の設定
+fmaps -u='tweetdeck\.twitter\.com' r T,t F,f n d p h j k l s ? 0
+
+" ime_controller.js の定義 --------------------------------
+let g:ex_ime_mode = "inactive"
+
+
+" スクリプト ==============================================
+js <<__EOL__
+// はてなブックマーク拡張を読み込む -----------------------
+if (typeof hBookmark != 'undefined')
+{
+	liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
+}
+
+
+// ステータスバー・コマンドラインの変更 -------------------
+//var statusline = document.getElementById('liberator-statusline');
+//statusline.hidden = true;
+
+//var cmdline = document.getElementById('liberator-message');
+//statusline.parentNode.replaceChild(cmdline.parentNode, statusline);
+__EOL__
+
+
+" vim: set ft=vim:
