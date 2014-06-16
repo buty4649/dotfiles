@@ -294,7 +294,7 @@ nnoremap [quickrun]q <Esc>:QuickRun<CR>
 " Gist呼び出し
 nnoremap [Gist]   <Nop>
 nmap     <Space>g [Gist]
-nnoremap [Gist]g  <Esc>:Gist<CR>
+nnoremap [Gist]g  <Esc>:GistUpload<CR>
 nnoremap [Gist]b  <Esc>:Gist -b<CR>
 
 " memolist系
@@ -364,6 +364,7 @@ let g:memolist_memo_suffix = "md"
 " ---------------------------------------------------------
 "  ローカルコマンドの定義
 " ---------------------------------------------------------
+" Syntax表示コマンド
 function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
   if a:transparent
@@ -405,6 +406,15 @@ endfunction
 
 command! SyntaxInfo call s:get_syn_info()
 
+
+" Gistするときにft=""なら強制的にmarkdownにする
+function! s:gist_upload()
+  if &ft == ""
+    setfiletype markdown
+  endif
+  :Gist
+endfunction
+command! GistUpload call s:gist_upload()
 
 " ---------------------------------------------------------
 "  環境依存ファイルの読み込み
