@@ -287,10 +287,10 @@ nmap     <Space>u [unite]
 nnoremap [unite]u <Esc>:Unite<Space>
 nnoremap <silent> [unite]r <Esc>:Unite recording<CR>
 
-" Quickrun呼び出し
+" QuickRun呼び出し
 nnoremap [quickrun]  <Nop>
 nmap     <Space>q [quickrun]
-nnoremap [quickrun]q <Esc>:Quickrun<Space>
+nnoremap [quickrun]q <Esc>:QuickRun<CR>
 
 " Gist呼び出し
 nnoremap [Gist]   <Nop>
