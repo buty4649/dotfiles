@@ -31,7 +31,6 @@ NeoBundle 'motemen/git-vim.git'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mru.vim'
-NeoBundle 'rbtnn/rabbit-ui.vim'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.git'
 NeoBundle 'Shougo/unite.vim'
@@ -403,14 +402,6 @@ function! s:get_syn_info()
 endfunction
 command! SyntaxInfo call s:get_syn_info()
 
-
-function! s:edit_csv(path)
-  call writefile(map(rabbit_ui#gridview(
-        \ map(readfile(expand(a:path)),'split(v:val,",",1)')),
-        \ "join(v:val, ',')"), expand(a:path))
-endfunction
-
-command! -nargs=1 -complete=file EditCSV  :call <sid>edit_csv(<q-args>)
 
 " ---------------------------------------------------------
 "  環境依存ファイルの読み込み
