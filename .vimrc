@@ -372,6 +372,7 @@ function! s:get_syn_id(transparent)
     return synid
   endif
 endfunction
+
 function! s:get_syn_attr(synid)
   let name = synIDattr(a:synid, "name")
   let ctermfg = synIDattr(a:synid, "fg", "cterm")
@@ -385,6 +386,7 @@ function! s:get_syn_attr(synid)
         \ "guifg": guifg,
         \ "guibg": guibg}
 endfunction
+
 function! s:get_syn_info()
   let baseSyn = s:get_syn_attr(s:get_syn_id(0))
   echo "name: " . baseSyn.name .
@@ -400,6 +402,7 @@ function! s:get_syn_info()
         \ " guifg: " . linkedSyn.guifg .
         \ " guibg: " . linkedSyn.guibg
 endfunction
+
 command! SyntaxInfo call s:get_syn_info()
 
 
