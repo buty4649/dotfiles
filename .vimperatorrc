@@ -20,6 +20,9 @@ set status-=location
 " http://blog.ruedap.com/2011/03/27/vimperator3-hint-mode-alphabet-uppercase
 set hintchars=ifjklasdhguonmerwc
 
+" runtimepathを変更する(Windows向け)
+set runtimepath=~/.vimperator
+
 
 " IME制御 --------------------------------------------------
 " http://vimperator.g.hatena.ne.jp/teramako/20090311/1236776437
@@ -53,8 +56,14 @@ map <silent> Y :copy %TITLE% %URL%<CR>
 " b : ブックマークを選択
 noremap b :bmarks!<Space>
 
-" d : 今のウインドウを閉じて直前のタブに移動
-noremap d <M-w>
+" d : ブラウザ標準機能でタブを閉じる
+js << EOL
+if(liberator.has("MacUnix")) {
+ liberator.execute("map d <M-w>");
+} else {
+ liberator.execute("map d <C-w>");
+}
+EOL
 
 " h : 左に5スクロール
 noremap h 5h
@@ -78,10 +87,14 @@ map u :undo<Space>
 map <silent> y :copy %URL%<CR>
 
 " ,R : .vimperatorrcを再読み込み
-map <silent> ,R :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/.vimperatorrc<CR>
+map <silent> ,R :mapc<CR>:cmapc<CR>:imapc<CR>:so! ~/.vimperatorrc<CR>
 
 " Ctrl+C : コピー
 noremap <C-c> Y
+
+" Ctrl+G : タブグループを切り替え
+"" <CR>を追加すると何故かうまく動かない…
+noremap <C-g> <ESC>:tabgroups switch<SPACE><TAB>
 
 " Ctrl+H : 一つ次のページへ戻る
 noremap <C-h> H
@@ -91,6 +104,9 @@ noremap <C-l> L
 
 " Ctrl+T : 前に開いていたページを開く
 noremap <Silent> <C-t> :buffer! #<CR>
+
+" Ctrl+Tab : ブラウザ標準のタブ切り替えを行う(Tab Mix Plusのプレビュー機能を使用)
+noremap <C-Tab> i<C-Tab>
 
 " Alt+↓ : メニュー表示
 """map <silent> <A-Down> :set go+=m<CR>
@@ -108,7 +124,7 @@ cmap <C-p> <S-TAB>
 cmap <C-n> <TAB>
 
 " プラグイン設定 ==========================================
-source ~/vimperator/vimppm/plugin/vimppm.js
+source ~/.vimperator/vimppm/plugin/vimppm.js
 
 vimppm '_libly.js'
 vimppm 'copy.js'
