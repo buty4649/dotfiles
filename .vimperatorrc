@@ -1,3 +1,5 @@
+" 参考
+" http://chroju89.hatenablog.jp/entry/2014/02/09/102914
 " 基本的な設定 ============================================
 
 " ブラウザのタイトル
@@ -122,6 +124,14 @@ cmap <Down> <TAB>
 " Bash風のキーバインド
 cmap <C-p> <S-TAB>
 cmap <C-n> <TAB>
+
+
+" カラースキーム ==========================================
+" ヒントの文字を変更
+hi Hint font-family: Arial; font-size: 21px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: #33cccc;
+hi HintElem color: gray; background-color: #a1e4e6;
+hi HintActive color: black; background-color: #ff8700;
+
 
 " プラグイン設定 ==========================================
 source ~/.vimperator/vimppm/plugin/vimppm.js
