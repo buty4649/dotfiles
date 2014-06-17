@@ -171,4 +171,8 @@ if (typeof hBookmark != 'undefined')
 __EOL__
 
 
+
+" 機器固有設定を読み込む ==================================
+source! ~/.vimperatorrc.local
+
 " vim: set ft=vim:
