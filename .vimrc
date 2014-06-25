@@ -280,6 +280,10 @@ cnoremap <C-f> <Right>
 cnoremap <C-h> <BackSpace>
 cnoremap <C-p> <ESC>q:
 
+" 日付入力
+noremap  <silent> <F5> <ESC>a<F5>
+inoremap <silent> <F5> <C-r>=strftime("%Y/%m/%d %H:%M:%S")<CR>
+
 " Unite呼び出し
 nnoremap [unite]  <Nop>
 nmap     <Space>u [unite]
