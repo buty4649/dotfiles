@@ -271,6 +271,10 @@ inoremap <C-w> <C-o>W
 " Visualモードのヤンクはクリップボードコピーにする
 vnoremap y "*y
 
+" -- -- snip -- --
+vmap <silent> <C-s> s-- -- snip -- --<ESC>0
+
+
 " コマンドモードの設定
 " Bash風のキーバインドにする
 cnoremap <C-a> <C-f>
