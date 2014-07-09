@@ -19,7 +19,6 @@ call neobundle#rc()
 
 " プラグインの定義 ------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized.git'
-"NeoBundle 'basyura/mduem.vim'
 NeoBundle 'banyan/Nonopaste.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'itchyny/thumbnail.vim'
@@ -30,18 +29,15 @@ NeoBundle 'LeafCage/unite-recording'
 NeoBundle 'motemen/git-vim.git'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
-NeoBundle 'mru.vim'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.git'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/open-browser.vim'
-"NeoBundle 'Lokaltog/vim-powerline.git'
-"NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
-"NeoBundle 'vimwiki'
 
 " 非同期通信を可能にする
 " 'build'が指定されているのでインストール時に自動的に
@@ -60,7 +56,6 @@ if has('clientserver')
     NeoBundle 'thinca/vim-singleton'
     " 多重起動チェック
     call singleton#enable()
-
 endif
 
 filetype plugin indent on
@@ -123,10 +118,11 @@ set nowritebackup
 " 表示関連 ------------------------------------------------------------------
 set number              " 行番号を表示
 set showtabline=2       " タブラインを常時表示
-set cursorline          " カーソル行をハイライト
-set wrap                " 折り返し表示
+set laststatus=2        " ステータスラインを常時表示
+set nocursorline        " カーソル行をハイライトしない(autogroupで切り替え)
+set nowrap              " 折り返し表示しない
 set textwidth=0         " 自動改行の禁止
-set colorcolumn=80      " 80文字目に線を入れる
+"set colorcolumn=80      " 80文字目に線を入れる
 set splitright          " 垂直分割を右側にする
 
 " 特殊文字を可視化
@@ -164,11 +160,11 @@ nnoremap k gk
 nnoremap <C-d> 10gj
 nnoremap <C-u> 10gk
 
-" ウインドウ移動
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"" ウインドウ移動
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 
 " 新規タブ作成
 nnoremap <silent> <S-t> :tabnew<CR>
@@ -180,17 +176,20 @@ vnoremap / /\v
 " 検索時のハイライトを無効化
 nnoremap <silent> <Leader><Space> :noh<CR>
 nnoremap <silent> <ESC><ESC> :noh<CR>
+nnoremap <silent> <C-c><C-c> :noh<CR>
 
 " ; を :にマッピング
 nnoremap ; :
 
 " バッファ選択
-nnoremap b <ESC>:ls<CR>b
+"nnoremap b <ESC>:ls<CR>b
 
 " T + ? で各種設定をトグル
 nnoremap [toggle] <Nop>
 nmap T [toggle]
+nnoremap <silent> [toggle]c :ToggleColorColumn<CR>
 nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
+nnoremap <silent> [toggle]S :windo set invscrollbind<CR>:wincmd w<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
@@ -221,14 +220,19 @@ nnoremap b <ESC>:ls<CR>:b
 imap <C-v> <MiddleMouse>
 
 " インサートモード: Ctrl+cをESCキーと同等にする
-imap <C-c> <ESC>
+imap <silent> <C-c> <ESC>:set imdisable<CR>
+
+" インサートモード: ESCを押したらIMEを無効化する
+imap <silent> <ESC> <ESC>:set imdisable<CR>
+
 
 " F1キーを無効化
 nmap <F1> <nop>
 imap <F1> <nop>
 
+
 " F3で検索履歴を開く
-nnoremap <F3> <CR>q/
+noremap <F3> <CR>q/
 
 " q:,q/,q?は無効化
 nnoremap q: <nop>
@@ -250,7 +254,7 @@ nnoremap <silent> <C-@> :Fontzoom!<cr>
 " インサートモードの設定
 inoremap <C-a> <C-o>0
 inoremap <C-b> <Left>
-inoremap <C-d> <Del>
+"inoremap <C-d> <Del>
 inoremap <C-e> <C-o>$
 
 inoremap <C-h> <BS>
@@ -284,6 +288,7 @@ cnoremap <C-f> <Right>
 cnoremap <C-h> <BackSpace>
 cnoremap <C-p> <ESC>q:
 
+
 " 日付入力
 noremap  <silent> <F5> <ESC>a<F5>
 inoremap <silent> <F5> <C-r>=strftime("%Y/%m/%d %H:%M:%S")<CR>
@@ -291,7 +296,10 @@ inoremap <silent> <F5> <C-r>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 " Unite呼び出し
 nnoremap [unite]  <Nop>
 nmap     <Space>u [unite]
-nnoremap [unite]u <Esc>:Unite<Space>
+nnoremap [unite]u <Esc>:Unite -no-split<Space>
+
+nnoremap <silent> [unite]f <Esc>:Unite -no-split file<CR>
+nnoremap <silent> [unite]m <Esc>:Unite -no-split file_mru<CR>
 nnoremap <silent> [unite]r <Esc>:Unite recording<CR>
 
 " QuickRun呼び出し
@@ -322,6 +330,17 @@ augroup markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+" カレントウィンドウにのみ罫線を引く
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+" カレントディレクトリを変更する
+au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
+
+
 " ---------------------------------------------------------
 "  プラグインの設定
 " ---------------------------------------------------------
@@ -350,6 +369,10 @@ endif
 " vim-quickrunの設定
 let g:quickrun_config = {
 \   'markdown': {
+\     'type': 'markdown/gfm',
+\     'outputter': 'browser'
+\   },
+\   'ghmarkdown': {
 \     'type': 'markdown/gfm',
 \     'outputter': 'browser'
 \   }
@@ -423,6 +446,16 @@ function! s:gist_upload()
   :Gist
 endfunction
 command! GistUpload call s:gist_upload()
+
+" colorcolumnをトグルする
+function! s:ToggleColorColumn()
+  if &cc == 0
+    setl cc=80
+  else
+    setl cc=0
+  endif
+endfunction
+command! ToggleColorColumn call s:ToggleColorColumn()
 
 " ---------------------------------------------------------
 "  環境依存ファイルの読み込み
