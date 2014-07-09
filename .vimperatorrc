@@ -37,6 +37,9 @@ style -name commandline-ime chrome://* #liberator-commandline-command input {ime
 " B : バッファー一覧
 noremap B b
 
+" F : 復数のリンクを他のタブで開く
+noremap F ;F
+
 " H : 次のタブへ移動
 noremap H gT
 
