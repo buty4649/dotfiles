@@ -29,11 +29,13 @@ NeoBundle 'LeafCage/unite-recording'
 NeoBundle 'motemen/git-vim.git'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.git'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
+NeoBundle 'tejr/vim-tmux'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/open-browser.vim'
@@ -135,6 +137,7 @@ set lazyredraw
 " カラースキームの設定
 syntax enable
 set background=dark
+let g:solarized_termtrans=1
 colorscheme solarized
 "colorscheme sakura
 
