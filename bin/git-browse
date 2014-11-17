@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HUB=$(which hub)
+GITHUB_HOST=$(git remote -v |
+  ruby -ruri -ane 'print URI.parse($F[1]).host;exit'
+) $HUB browse
