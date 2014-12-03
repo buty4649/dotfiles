@@ -441,10 +441,10 @@ endfunction
 command! SyntaxInfo call s:get_syn_info()
 
 
-" Gistするときにft=""なら強制的にmarkdownにする
+" Gistするときにft=""なら強制的にtextにする
 function! s:gist_upload()
   if &ft == ""
-    setfiletype markdown
+    setfiletype text
   endif
   :Gist
 endfunction
