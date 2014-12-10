@@ -6,7 +6,7 @@ scriptencoding utf-8
 "  前処理
 " ---------------------------------------------------------
 "  Windowsの場合のみ.vimに変更
-if has('win32')
+if has('vim_starting') && has('win32')
 	 set runtimepath^=$HOME/.vim
 endif
 
