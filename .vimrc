@@ -226,7 +226,7 @@ imap <C-v> <MiddleMouse>
 imap <silent> <C-c> <ESC>:set imdisable<CR>
 
 " インサートモード: ESCを押したらIMEを無効化する
-imap <silent> <ESC> <ESC>:set imdisable<CR>
+"imap <silent> <ESC> <ESC>:set imdisable<CR>
 
 
 " F1キーを無効化
