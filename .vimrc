@@ -26,6 +26,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'jtratner/vim-flavored-markdown.git'
 NeoBundle 'glidenote/memolist.vim'
+NeoBundle 'kchmck/vim-coffee-script'
 "NeoBundle 'kien/ctrlp.vim.git'
 NeoBundle 'LeafCage/unite-recording'
 NeoBundle 'motemen/git-vim.git'
@@ -92,9 +93,9 @@ set showmatch           " 対応する括弧などをハイライト表示する
 set modeline            " モードラインを有効化
 
 " Tabの設定
-set tabstop=3
+set tabstop=4
 set shiftwidth=4
-set softtabstop=0
+set softtabstop=4
 set expandtab
 
 " 折り返しをしない
