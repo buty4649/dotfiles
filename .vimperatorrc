@@ -171,6 +171,18 @@ if (typeof hBookmark != 'undefined')
 __EOL__
 
 
+" Firefox(Vimperator)で見てるページをGoogle Chromeで開く
+" http://gin0606.hatenablog.com/entry/2013/11/19/150409
+js <<EOM
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],[',c'], 'Open URL In Chrome',
+  function(){
+    if(liberator.has("MacUnix")){
+      io.system('open -a "/Applications/Google\ Chrome.app" ' + "'"+ buffer.URL + "'");
+    }
+  },{}
+);
+EOM
+
 
 " 機器固有設定を読み込む ==================================
 source! ~/.vimperatorrc.local
