@@ -332,13 +332,6 @@ augroup markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
-" カレントウィンドウにのみ罫線を引く
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
-
 " カレントディレクトリを変更する
 au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 

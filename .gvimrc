@@ -65,6 +65,19 @@ if filereadable(g:save_window_file)
 endif
 
 
+" cursolineをいい感じにする奴
+" see. http://d.hatena.ne.jp/thinca/20090530/1243615055
+augroup vimrc-auto-cursorline
+  autocmd!
+  autocmd CursorMoved,CursorMovedI,WinLeave * call s:turnoff_cursorline()
+  function! s:turnoff_cursorline()
+      if &cursorline == 1
+          setlocal nocursorline
+      endif
+  endfunction
+  autocmd CursorHold,CursorHoldI * setlocal cursorline
+augroup END
+
 " ---------------------------------------------------------
 "  キーマップ設定
 " ---------------------------------------------------------
