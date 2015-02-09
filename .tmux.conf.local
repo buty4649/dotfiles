@@ -1,0 +1,85 @@
+#
+# ローカル用のtmux.conf
+#
+
+set -g prefix C-t
+set -g mode-keys   vi
+set -g status-keys vi
+set -g repeat-time 250  # 連続入力の待ち時間を無くす
+set -g renumber-windows # ウインドウを閉じたらナンバリングし直す
+
+set -g default-terminal "xterm-256color"
+
+set -g set-titles on
+
+set-environment -g NCURSES_NO_UTF8_ACS 0
+
+# ステータスバーの設定
+set -g status-position      top
+set -g status-style         "bg=#ffffff,fg=black"
+set -g status-left          "  "
+set -g status-left-length   2
+set -g status-left-style    "bg=blue,fg=black"
+set -g status-right         "#{?pane_in_mode,#[bg=#ff8000] MODE #[bg=default],}#{?pane_synchronized,#[bg=red] SYNC #[bg=default],}| #{pane_width}x#{pane_height} | %R "
+set -g status-right-style   "bg=#808080"
+set -g window-status-format         "#F#I:#W "
+set -g window-status-style          "bg=#ffffff,fg=black"
+set -g window-status-current-style  "bg=cyan,fg=black"
+set -g window-status-current-format "#F#I:#W "
+set -g window-status-separator      "|"
+
+# ボーダーの設定
+set -g pane-active-border-style "bg=white,fg=black"
+set -g pane-border-style        "bg=black,fg=white"
+
+# MacOSの場合はnamespaceを再設定しようね
+if '[ $(uname -s) = "Darwin" ]' 'set -g default-command "reattach-to-user-namespace -l /bin/bash"'
+
+# ショートカットキーをクリア
+unbind -a
+
+# ショートカットキー
+bind t send-prefix
+
+# ウインドウ選択
+bind 0 select-window -t 0
+bind 1 select-window -t 1
+bind 2 select-window -t 2
+bind 3 select-window -t 3
+bind 4 select-window -t 4
+bind 5 select-window -t 5
+bind 6 select-window -t 6
+bind 7 select-window -t 7
+bind 8 select-window -t 8
+bind 9 select-window -t 9
+bind - last-window
+
+bind c   new-window
+bind d   detach
+bind '"' split-window -v
+bind %   split-window
+bind .   run "tmux source-file ~/.tmux.conf && tmux display-message 'reloaded'"
+bind :   command-prompt
+bind ?   list-keys
+bind ]   paste-buffer
+
+bind -r h resize-pane -L
+bind -r j resize-pane -D    # <- 逆のほうがやりやすい
+bind -r k resize-pane -U    # <- 
+bind -r l resize-pane -R
+
+bind -r C-h select-pane -L
+bind -r C-j select-pane -U
+bind -r C-k select-pane -D
+bind -r C-l select-pane -R
+
+bind C-d run 'tmux send-key $(date +%Y%m%d)'
+bind C-s run 'tmux-snippets.sh'
+bind C-t copy-mode
+
+
+
+# ショートカットキー(コピーモード)
+bind -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+# vi:ft=tmux:et
