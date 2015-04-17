@@ -24,7 +24,8 @@ NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'banyan/Nonopaste.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'itchyny/thumbnail.vim'
-NeoBundle 'jtratner/vim-flavored-markdown.git'
+"NeoBundle 'jtratner/vim-flavored-markdown.git'
+NeoBundle 'fatih/vim-go.git'
 NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 "NeoBundle 'kien/ctrlp.vim.git'
@@ -149,6 +150,9 @@ if has('win32') || has('win64')
   set directory=$TMP
   set backupdir=$TMP
 endif
+
+" syntax/sh.vim はbashism固定でいいよね
+let b:is_bash = 1
 
 " ---------------------------------------------------------
 "  キーマップ設定
@@ -326,10 +330,11 @@ map <Leader>mg :MemoGrep<CR>
 "  リサイズ時に分割ウインドウを調整する
 autocmd VimResized * :wincmd =
 
-" markdown シンタックスを内部的にGFMへ変更する
+" markdown シンタックスを使うようにする
+" なぜかmodula2になる
 augroup markdown
     au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+    au BufNewFile,BufRead *.md setlocal filetype=markdown
 augroup END
 
 " カレントディレクトリを変更する
