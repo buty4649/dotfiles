@@ -2,7 +2,7 @@
 # ローカル用のtmux.conf
 #
 
-set -g prefix C-t
+set -g prefix C-y
 set -g mode-keys   vi
 set -g status-keys vi
 set -g repeat-time 250  # 連続入力の待ち時間を無くす
@@ -39,7 +39,7 @@ if '[ $(uname -s) = "Darwin" ]' 'set -g default-command "reattach-to-user-namesp
 unbind -a
 
 # ショートカットキー
-bind t send-prefix
+bind y send-prefix
 
 # ウインドウ選択
 bind 0 select-window -t 0
@@ -75,7 +75,7 @@ bind -r C-l select-pane -R
 
 bind C-d run 'tmux send-key $(date +%Y%m%d)'
 bind C-s run 'tmux-snippets.sh'
-bind C-t copy-mode
+bind C-y copy-mode
 
 
 
