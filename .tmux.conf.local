@@ -57,8 +57,9 @@ bind - last-window
 
 bind c   new-window
 bind d   detach
-bind '"' split-window -v
-bind %   split-window
+bind z   resize-pane -Z
+bind '"' split-window
+bind %   split-window -h
 bind .   run "tmux source-file ~/.tmux.conf && tmux display-message 'reloaded'"
 bind :   command-prompt
 bind ?   list-keys
