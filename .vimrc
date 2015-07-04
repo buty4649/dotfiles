@@ -126,6 +126,7 @@ set nowrap              " 折り返し表示しない
 set textwidth=0         " 自動改行の禁止
 "set colorcolumn=80      " 80文字目に線を入れる
 set splitright          " 垂直分割を右側にする
+set scrolloff=5         " スクロール送りをいい感じにする
 
 " 特殊文字を可視化
 set list
@@ -278,8 +279,10 @@ inoremap <C-w> <C-o>W
 "inoremap < <><Left>
 
 
-" Visualモードのヤンクはクリップボードコピーにする
-vnoremap y "*y
+" GUIのVisualモードのヤンクはクリップボードコピーにする
+if has("gui_running")
+    vnoremap y "*y
+endif
 
 " -- -- snip -- --
 vmap <silent> <C-s> s-- -- snip -- --<ESC>0
