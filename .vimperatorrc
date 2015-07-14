@@ -1,4 +1,4 @@
-" 参考
+j" 参考
 " http://chroju89.hatenablog.jp/entry/2014/02/09/102914
 " 基本的な設定 ============================================
 
@@ -100,6 +100,12 @@ noremap <C-c> Y
 " Ctrl+G : タブグループを切り替え
 "" <CR>を追加すると何故かうまく動かない…
 noremap <C-g> <ESC>:tabgroups switch<SPACE><TAB>
+
+" Ctrl+D : PageDown
+noremap <C-d> <PageDown>
+
+" Ctrl+U : PageUp
+noremap <C-u> <PageUp>
 
 " Ctrl+H : 一つ次のページへ戻る
 noremap <C-h> H
