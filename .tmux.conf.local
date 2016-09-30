@@ -65,13 +65,13 @@ bind ?   list-keys
 bind ]   paste-buffer
 
 bind -r h resize-pane -L
-bind -r j resize-pane -D    # <- 逆のほうがやりやすい
-bind -r k resize-pane -U    # <- 
+bind -r j resize-pane -U
+bind -r k resize-pane -D
 bind -r l resize-pane -R
 
 bind -r C-h select-pane -L
-bind -r C-j select-pane -U
-bind -r C-k select-pane -D
+bind -r C-j select-pane -D
+bind -r C-k select-pane -U
 bind -r C-l select-pane -R
 
 bind C-d run 'tmux send-key $(date +%Y%m%d)'
