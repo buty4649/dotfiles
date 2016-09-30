@@ -56,7 +56,7 @@ noremap L gt
 noremap T :tabopen<Space>
 
 " Y : タイトル + URLをコピー
-map <silent> Y :copy %TITLE% %URL%<CR>
+map <silent> Y :copy [%TITLE%](%URL%)<CR>
 
 " b : ブックマークを選択
 noremap b :bmarks!<Space>
