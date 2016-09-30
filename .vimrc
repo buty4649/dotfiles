@@ -22,6 +22,7 @@ call neobundle#rc()
 " プラグインの定義 ------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'banyan/Nonopaste.vim'
+NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 "NeoBundle 'jtratner/vim-flavored-markdown.git'
