@@ -135,6 +135,7 @@ set textwidth=0         " 自動改行の禁止
 "set colorcolumn=80      " 80文字目に線を入れる
 set splitright          " 垂直分割を右側にする
 set scrolloff=5         " スクロール送りをいい感じにする
+set ambiwidth=double
 
 " 特殊文字を可視化
 set list
