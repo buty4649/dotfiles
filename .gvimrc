@@ -31,6 +31,8 @@ set cmdheight=1
 " 折り返しを無効化
 set textwidth=0
 
+set visualbell
+
 " ハイライト設定(ToDo:後でカラースキームに追加)
 "highlight CursorLine gui=underline guifg=NONE guibg=NONE guisp=NONE
 "highlight SpecialKey guifg=LightGray
