@@ -387,6 +387,12 @@ let g:quickrun_config = {
 let g:memolist_path = ""
 let g:memolist_memo_suffix = "md"
 
+" serverspec-snippets
+let g:neosnippet#snippets_directory = [
+      \'~/.vim/snippets',
+      \'~/.vim/bundle/neosnippet-snippets/neosnippets/',
+      \'~/.vim/bundle/serverspec-snippets',
+      \]
 
 
 
