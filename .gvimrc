@@ -39,6 +39,7 @@ set visualbell
 "highlight NonText guifg=Blue
 "hi SpecialKey guifg=#d4eff2 guibg=bg
 
+let g:indentLine_color_gui = '#bdbdbd'
 
 " ---------------------------------------------------------
 "  コマンド設定
