@@ -14,7 +14,7 @@ colorscheme sakura
 
 " フォント設定
 "set guifont=Ricty_Meiryo_for_Powerline:h10:cSHIFTJIS
-set guifont=Osaka一等幅:h14
+set guifont=Osaka-Mono:h14
 
 " ツールバーを非表示
 set guioptions-=T
