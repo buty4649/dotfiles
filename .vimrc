@@ -197,9 +197,6 @@ nnoremap <silent> <C-c><C-c> :noh<CR>
 " ; を :にマッピング
 nnoremap ; :
 
-" バッファ選択
-"nnoremap b <ESC>:ls<CR>b
-
 " T + ? で各種設定をトグル
 nnoremap [toggle] <Nop>
 nmap T [toggle]
@@ -228,9 +225,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-
-" バッファ選択
-nnoremap b <ESC>:ls<CR>:b
 
 " インサートモード: Ctrl+Vを貼付けにする
 imap <C-v> <MiddleMouse>
@@ -279,14 +273,6 @@ inoremap <C-k> <Up>
 inoremap <C-f> <Right>
 
 inoremap <C-w> <C-o>W
-
-"inoremap { {}<Left>
-"inoremap [ []<Left>
-"inoremap ( ()<Left>
-"inoremap " ""<Left>
-"inoremap ' ''<Left>
-"inoremap < <><Left>
-
 
 " GUIのVisualモードのヤンクはクリップボードコピーにする
 if has("gui_running")
