@@ -48,6 +48,7 @@ NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'Yggdroot/indentLine'
 
 " 非同期通信を可能にする
 " 'build'が指定されているのでインストール時に自動的に
