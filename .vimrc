@@ -309,6 +309,7 @@ inoremap <silent> <F5> <C-r>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 nnoremap [unite]  <Nop>
 nmap     <Space>u [unite]
 nnoremap [unite]u <Esc>:Unite -no-split<Space>
+nmap     [unite]b :Unite buffer<CR>
 
 nnoremap <silent> [unite]f <Esc>:Unite -no-split file<CR>
 nnoremap <silent> [unite]m <Esc>:Unite -no-split file_mru<CR>
