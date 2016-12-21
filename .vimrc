@@ -347,6 +347,10 @@ augroup END
 " カレントディレクトリを変更する
 au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 
+augroup CursorScroll
+    autocmd!
+    autocmd CursorMoved * normal! zz
+augroup END
 
 " ---------------------------------------------------------
 "  プラグインの設定
