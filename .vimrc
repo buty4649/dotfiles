@@ -230,7 +230,7 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 
 " インサートモード: Ctrl+Vを貼付けにする
-imap <C-v> <MiddleMouse>
+imap <c-v> <MiddleMouse>
 
 " インサートモード: Ctrl+cをESCキーと同等にする
 imap <silent> <C-c> <ESC>:set imdisable<CR>
@@ -276,6 +276,11 @@ inoremap <C-k> <Up>
 inoremap <C-f> <Right>
 
 inoremap <C-w> <C-o>W
+
+" MacのCommand-Vがたまに効かなくなるのでhack
+if has('mac')
+    inoremap <D-v> <MiddleMouse>
+endif
 
 " GUIのVisualモードのヤンクはクリップボードコピーにする
 if has("gui_running")
