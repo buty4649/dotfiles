@@ -33,6 +33,11 @@ set textwidth=0
 
 set visualbell
 
+" マウスクリックでウインドウをアクティブにして
+" そのままINSERTモードに入ることに気が付かずjを入力してしまうことが
+" 多々あるのでマウスを無効化する
+set mouse=
+
 " ハイライト設定(ToDo:後でカラースキームに追加)
 "highlight CursorLine gui=underline guifg=NONE guibg=NONE guisp=NONE
 "highlight SpecialKey guifg=LightGray
