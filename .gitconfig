@@ -1,0 +1,22 @@
+[user]
+	email = buty4649@gmail.com
+	name = buty
+[ghq]
+	root = ~/src
+[hub]
+	host = git.pepabo.com
+[include]
+	path = ~/.gitconfig.local
+[alias]
+	a = !"git status --short | awk '!/^D/{print $2}' | peco | xargs -r git add"
+	br = branch
+	cm = commit -v
+	co = checkout
+	cob = checkout -b
+	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
+	l = !tig
+	o = open
+	st = status --short --branch
+
+# see http://qiita.com/kyanny/items/10a57a4f1d2806e3a3b8
+delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -r git branch -d"
