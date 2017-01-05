@@ -6,6 +6,12 @@ source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_JP.utf-8
 source $VIMRUNTIME/menu.vim
 
+" 多重起動チェック
+if has('clientserver')
+    call singleton#enable()
+endif
+
+
 " カラースキーム設定
 set t_Co=256
 "set background=light

@@ -76,11 +76,6 @@ if neobundle#exists_not_installed_bundles()
 	 echomsg 'Please execute ":NeoBundleInstall" command.'
 endif
 
-" 多重起動チェック
-if has('clientserver')
-    call singleton#enable()
-endif
-
 " ---------------------------------------------------------
 "  基本設定
 " ---------------------------------------------------------
