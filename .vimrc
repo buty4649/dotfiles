@@ -11,13 +11,12 @@ if has('vim_starting') && has('win32')
 endif
 
 " NeoBundleの初期化
-let g:neobundle#types#git#default_protocol = 'https'
 if has('vim_starting')
 	 set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 filetype plugin indent off
 
-call neobundle#rc()
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " プラグインの定義 ------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized.git'
@@ -65,10 +64,9 @@ NeoBundle 'Yggdroot/indentLine'
 " +clientserverの時だけロード
 if has('clientserver')
     NeoBundle 'thinca/vim-singleton'
-    " 多重起動チェック
-    call singleton#enable()
 endif
 
+call neobundle#end()
 filetype plugin indent on
 
 " プラグインのインストールチェック
@@ -78,6 +76,10 @@ if neobundle#exists_not_installed_bundles()
 	 echomsg 'Please execute ":NeoBundleInstall" command.'
 endif
 
+" 多重起動チェック
+if has('clientserver')
+    call singleton#enable()
+endif
 
 " ---------------------------------------------------------
 "  基本設定
