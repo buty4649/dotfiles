@@ -81,6 +81,6 @@ bind C-y copy-mode
 
 
 # ショートカットキー(コピーモード)
-bind -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+bind -T copy-mode-vi Enter send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X cancel
 
 # vi:ft=tmux:et
