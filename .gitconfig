@@ -13,6 +13,7 @@
 	cm = commit -v
 	co = checkout
 	cob = checkout -b
+	comp = !"git checkout master && git pull"
 	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
 	l = !tig
 	o = open
@@ -20,3 +21,5 @@
 
 # see http://qiita.com/kyanny/items/10a57a4f1d2806e3a3b8
 delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -r git branch -d"
+[fetch]
+	prune = true
