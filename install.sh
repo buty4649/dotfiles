@@ -3,6 +3,7 @@
 set -e
 
 WORKDIR="$(cd `dirname $0`; pwd)"
+MARCH="$(uname -s |tr '[A-Z]' '[a-z]')"
 
 git submodule init
 git submodule update
@@ -23,3 +24,4 @@ do
     fi
 done
 
+[ -x "./install_${MARCH}.sh" ] && ./install_${MARCH}.sh
