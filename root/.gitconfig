@@ -23,3 +23,5 @@
 delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -r git branch -d"
 [fetch]
 	prune = true
+[core]
+	editor = vim -c \"set fenc=utf8\"
