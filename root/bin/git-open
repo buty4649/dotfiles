@@ -1,13 +1,14 @@
 #!/bin/bash
 
-FILE="$1"
 HUB_OPTS=""
 
-if [[ -n $FILE ]];
+if [[ -f $1 ]];
 then
     BRANCH="$(git rev-parse --abbrev-ref HEAD)"
     PREFIX="$(git rev-parse --show-prefix)"
     HUB_OPTS="-- blob/${BRANCH}/${PREFIX}${FILE}"
+else
+    HUB_OPTS="$*"
 fi
 
 hub browse $HUB_OPTS
