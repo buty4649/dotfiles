@@ -25,3 +25,5 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$
 	prune = true
 [core]
 	editor = vim -c \"set fenc=utf8\"
+[init]
+	templatedir = ~/.git_template
