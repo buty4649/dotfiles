@@ -4,6 +4,7 @@ HUB_OPTS=""
 
 if [[ -f $1 ]];
 then
+    FILE="$1"
     BRANCH="$(git rev-parse --abbrev-ref HEAD)"
     PREFIX="$(git rev-parse --show-prefix)"
     HUB_OPTS="-- blob/${BRANCH}/${PREFIX}${FILE}"

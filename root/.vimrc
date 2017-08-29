@@ -131,7 +131,7 @@ set nowrap              " 折り返し表示しない
 set textwidth=0         " 自動改行の禁止
 "set colorcolumn=80      " 80文字目に線を入れる
 set splitright          " 垂直分割を右側にする
-set scrolloff=5         " スクロール送りをいい感じにする
+set scrolloff=10        " スクロール送りをいい感じにする
 set ambiwidth=double
 
 " 特殊文字を可視化
@@ -344,10 +344,10 @@ augroup END
 " カレントディレクトリを変更する
 au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 
-augroup CursorScroll
-    autocmd!
-    autocmd CursorMoved * normal! zz
-augroup END
+"augroup CursorScroll
+"    autocmd!
+"    autocmd CursorMoved * normal! zz
+"augroup END
 
 " ---------------------------------------------------------
 "  プラグインの設定

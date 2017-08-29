@@ -2,9 +2,7 @@
 "  GUI設定
 " ---------------------------------------------------------
 " メニューの文字化け対策
-source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_JP.utf-8
-source $VIMRUNTIME/menu.vim
 
 " 多重起動チェック
 if has('clientserver')
@@ -14,28 +12,24 @@ endif
 
 " カラースキーム設定
 set t_Co=256
-"set background=light
-"colorscheme solarized
 colorscheme sakura
 
 " フォント設定
 "set guifont=Ricty_Meiryo_for_Powerline:h10:cSHIFTJIS
-set guifont=Osaka-Mono:h14
+" 13ptじゃないとウインドウを最大化した時にちらつく
+set guifont=Migu\ 1M\ Regular:h13
 
 " ツールバーを非表示
 set guioptions-=T
 
-" カーソル行に下線を表示する
-set cursorline
+" カーソル行に下線を表示させない(描画が遅い)
+set nocursorline
 
 " タブのラベルにタブ番号を表示する＋ファイル名のみ表示
 set guitablabel=%N:\ %{GuiTabLabel()}
 
 " コマンド行を1行にする
 set cmdheight=1
-
-" 折り返しを無効化
-set textwidth=0
 
 set visualbell
 
@@ -60,37 +54,37 @@ let g:indentLine_color_gui = '#bdbdbd'
 "autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 " ウインドウの位置とサイズを記憶する
-let g:save_window_file = expand('$HOME/.vimwinpos')
-augroup SaveWindow
-  autocmd!
-  autocmd VimLeavePre * call s:save_window()
-  function! s:save_window()
-    let options = [
-      \ 'set columns=' . &columns,
-      \ 'set lines=' . &lines,
-      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-      \ ]
-    call writefile(options, g:save_window_file)
-  endfunction
-augroup END
-
-if filereadable(g:save_window_file)
-  execute 'source' g:save_window_file
-endif
+"let g:save_window_file = expand('$HOME/.vimwinpos')
+"augroup SaveWindow
+"  autocmd!
+"  autocmd VimLeavePre * call s:save_window()
+"  function! s:save_window()
+"    let options = [
+"      \ 'set columns=' . &columns,
+"      \ 'set lines=' . &lines,
+"      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+"      \ ]
+"    call writefile(options, g:save_window_file)
+"  endfunction
+"augroup END
+"
+"if filereadable(g:save_window_file)
+"  execute 'source' g:save_window_file
+"endif
 
 
 " cursolineをいい感じにする奴
 " see. http://d.hatena.ne.jp/thinca/20090530/1243615055
-augroup vimrc-auto-cursorline
-  autocmd!
-  autocmd CursorMoved,CursorMovedI,WinLeave * call s:turnoff_cursorline()
-  function! s:turnoff_cursorline()
-      if &cursorline == 1
-          setlocal nocursorline
-      endif
-  endfunction
-  autocmd CursorHold,CursorHoldI * setlocal cursorline
-augroup END
+"augroup vimrc-auto-cursorline
+"  autocmd!
+"  autocmd CursorMoved,CursorMovedI,WinLeave * call s:turnoff_cursorline()
+"  function! s:turnoff_cursorline()
+"      if &cursorline == 1
+"          setlocal nocursorline
+"      endif
+"  endfunction
+"  autocmd CursorHold,CursorHoldI * setlocal cursorline
+"augroup END
 
 " ---------------------------------------------------------
 "  キーマップ設定
@@ -104,7 +98,7 @@ nnoremap <silent> H		gT
 nnoremap <silent> L		gt
 
 " Powerlineを読み込み
-NeoBundleSource vim-powerline
+"NeoBundleSource vim-powerline
 
 " ---------------------------------------------------------
 "  関数の定義

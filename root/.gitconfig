@@ -8,14 +8,18 @@
 [include]
 	path = ~/.gitconfig.local
 [alias]
-	a = !"git status --short | awk '!/^D/{print $2}' | peco | xargs -r git add"
+    a = !"git status --short | awk '!/^[DR]/' | peco | awk '{print $2}' | xargs -r git add"
 	br = branch
 	cm = commit -v
+	c = !"git branch | awk '!/^\\*/' | peco | xargs -r git checkout"
 	co = checkout
 	cob = checkout -b
+    cobr = !"git branch -r | grep -vE '/(HEAD|master$)' | sed -e 's,origin/,,g' | peco | xargs -r -I{} git checkout -b {} origin/{}"
+    cof = !"git status --short | peco | awk '{print $2}' | xargs -r git checkout --"
 	comp = !"git checkout master && git pull"
 	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
-	l = !tig
+	l = log --oneline --decorate --graph -n10
+	ll = !tig
 	o = open
 	st = status --short --branch
 
@@ -27,3 +31,10 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$
 	editor = vim -c \"set fenc=utf8\"
 [init]
 	templatedir = ~/.git_template
+[rebase]
+	autosquash = true
+[tig "bind"]
+    diff = F ?!git commit --fixup %(commit)
+    diff = S ?!git commit --squash %(commit)
+    main = F ?!git commit --fixup %(commit)
+    main = S ?!git commit --squash %(commit)
