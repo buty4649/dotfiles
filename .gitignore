@@ -17,8 +17,6 @@ Session.vim
 *.elc
 samples
 
-root/.vim/bundle/
-root/.vim/undo
+root/.vim/plugged
 root/.vim/.netrwhist
 root/.vimrc_local
-root/.vimperator/info/
