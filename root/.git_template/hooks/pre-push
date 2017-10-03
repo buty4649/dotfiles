@@ -4,6 +4,6 @@ CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 if [ -z "$ALLOW_GIT_MASTER_PUSH" -a "$CURRENT_BRANCH" = "master" ];then
     echo "WARN: It's the master branch !!"
-    echo 'If you watch git push please set ALLOW_GIT_MASTER_PUSH=1'
+    echo 'If you want git push please set ALLOW_GIT_MASTER_PUSH=1'
     exit 1
 fi
