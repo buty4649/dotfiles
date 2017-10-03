@@ -1,0 +1,21 @@
+" see. http://qiita.com/koara-local/items/52d94b8ab72d654bcd92
+" init all settings
+set all&
+" init autocmd
+autocmd!
+" set script encoding
+scriptencoding utf-8
+" tiny と small では これ以上 vimrc を読み込まない
+if !1 | finish | endif
+" This is vim, not vi.
+set nocompatible
+" syntax hilight
+syntax enable
+" auto reload .vimrc
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
+" vim:ft=vim:et:ts=2:sw=2:sts=2

@@ -8,10 +8,11 @@
 " :he highlight-groups
 " :he cterm-colors
 
-hi clear
 if exists("syntax_on")
     syntax reset
 endif
+hi clear
+set background=light
 let colors_name="sakura"
 
 hi Normal       guifg=#000000 guibg=#fffbf0
@@ -61,6 +62,8 @@ hi PreProc      guifg=#cb4b16 guibg=NONE
 hi Type         guifg=#268bd2 guibg=NONE
 hi Special      guifg=#719e07 guibg=NONE
 hi Underlined   guifg=#0000ff guibg=NONE gui=underline
+hi Pmenu        guifg=#93a1a1 guibg=#eee8d5
+hi PmenuSel     guifg=#586e75 guibg=#073642
 "hi Ignore		
 "hi Error		
 "hi Todo		
