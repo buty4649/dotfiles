@@ -2,8 +2,12 @@
 
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
-if [ -z "$ALLOW_GIT_MASTER_PUSH" -a "$CURRENT_BRANCH" = "master" ];then
-    echo "WARN: It's the master branch !!"
-    echo 'If you want git push please set ALLOW_GIT_MASTER_PUSH=1'
-    exit 1
+if [ "$CURRENT_BRANCH" = "master" ];then
+    if [ -z "$ALLOW_GIT_MASTER_PUSH" -a -z "$(git config --get git.allow-master-push)" ];then
+        echo "WARN: It's the master branch !!"
+        echo 'If you want git push, please set either.'
+        echo '* $ALLOW_GIT_MASTER_PUSH=1'
+        echo '* git config --local git.allow-master-push 1'
+        exit 1
+    fi
 fi
