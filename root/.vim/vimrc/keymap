@@ -1,0 +1,24 @@
+let mapleader=","
+
+" タブ操作
+nnoremap L gt
+nnoremap H gT
+
+" glidenote/memolist
+nnoremap <Leader>mn  :MemoNew<CR>
+nnoremap <Leader>ml  :MemoList<CR>
+nnoremap <Leader>mg  :MemoGrep<CR>.
+
+" bashっぽいキーバインド
+inoremap <C-a> <C-o>0
+inoremap <C-b> <Left>
+inoremap <C-e> <C-o>$
+inoremap <C-f> <Right>
+
+" -- -- snip -- --
+vmap <silent> <C-s> s-- -- snip -- --<ESC>0
+
+" クリップボード(*レジスタ)にコピーする
+vnoremap y "*y
+
+" vim:ft=vim:et:ts=2:sw=2:sts=2

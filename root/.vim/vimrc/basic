@@ -1,0 +1,58 @@
+" エンコーディング関連 ------------------------------------------------------
+set fileencodings=utf-8,euc-jp
+
+" 検索関連 ------------------------------------------------------------------
+set ignorecase       " 大文字小文字を区別しない
+set smartcase        " 検索文字に大文字がある場合は大文字小文字を区別しない
+set incsearch        " インクリメンタルサーチ
+set hlsearch         " 検索結果をハイライト
+
+" 編集関連 ------------------------------------------------------------------
+set shiftround          " インデントをshiftwidthで丸める
+set infercase           " 補完時に大文字小文字を区別しない
+set hidden              " バッファを閉じる代わりに隠す（Undo履歴を残すため）
+set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバッファを開く
+set showmatch           " 対応する括弧などをハイライト表示する
+set modeline            " モードラインを有効化
+set noswapfile          " スワップファイルはいらん
+set nobackup            " バックアップファイルもいらん
+set nowritebackup       " 〃
+set backspace=indent,eol,start  " バックスペースでなんでも消せるようにする
+set matchpairs& matchpairs+=<:> " 対応括弧に'<'と'>'のペアを追加
+
+" Tabの設定
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+
+" 表示関連 ------------------------------------------------------------------
+set number              " 行番号を表示
+set showtabline=2       " タブラインを常時表示
+set laststatus=2        " ステータスラインを常時表示
+set nocursorline        " カーソル行をハイライトしない(autogroupで切り替え)
+set wrap                " 折り返し表示する
+set splitright          " 垂直分割を右側にする
+set scrolloff=10        " スクロール送りをいい感じにする
+set ambiwidth=double    " 文字幅を全角にする
+set list                " 特殊文字を可視化
+set listchars=tab:»\ ,eol:↲,extends:»,precedes:«,nbsp:%
+set lazyredraw          " 再描画を抑止
+set undodir=~/.vim/undo " undoファイルの保存位置を変更
+let b:is_bash = 1       " bashスクリプトしか使わない
+
+
+" カラースキームの設定
+set background=dark
+let g:solarized_termtrans=1 " 透過色を使用
+colorscheme solarized
+
+" Windowsのみテンポラリを変更する
+if has('win32') || has('win64')
+  "環境変数$TMPを使用する場合
+  set directory=$TMP
+  set backupdir=$TMP
+endif
+
+" vim:ft=vim:et:ts=2:sw=2:sts=2

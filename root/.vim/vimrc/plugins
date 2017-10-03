@@ -1,0 +1,34 @@
+" プラグインがロードされているかチェック
+" see. http://ryochack.hatenablog.com/entry/2017/04/08/162354
+function! s:is_plugged(name)
+	if exists('g:plugs') && has_key(g:plugs, a:name) && isdirectory(g:plugs[a:name].dir)
+		return 1
+	else
+		return 0
+	endif
+endfunction
+
+" プラグインの定義 ------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-scripts/vim-auto-save'
+Plug 'voxpupuli/vim-puppet'
+
+let g:auto_save=1
+Plug 'glidenote/memolist.vim'
+
+
+" ウインドウを1枚に固定する
+if has('clientserver')
+	Plug 'thinca/vim-singleton'
+
+	if s:is_plugged('vim-singleton') && has('gui_running')
+		call plug#load('vim-singleton')
+		call singleton#enable()
+	endif
+endif
+
+call plug#end()
+
+
+" vim:ft=vim:et:ts=2:sw=2:sts=2
