@@ -8,7 +8,7 @@
 [include]
 	path = ~/.gitconfig.local
 [alias]
-    a = !"git status --short | awk '!/^[DR]/' | peco | awk '{print $2}' | xargs -r git add"
+    a = !"git status --short | awk '!/^[DR] /' | peco | awk '{print $NF}' | xargs -r git add"
 	br = branch
 	cm = commit -v
 	c = !"git branch | awk '!/^\\*/' | peco | xargs -r git checkout"
@@ -17,7 +17,9 @@
     cobr = !"git branch -r | grep -vE '/(HEAD|master$)' | sed -e 's,origin/,,g' | peco | xargs -r -I{} git checkout -b {} origin/{}"
     cof = !"git status --short | peco | awk '{print $2}' | xargs -r git checkout --"
 	comp = !"git checkout master && git pull"
+    d = diff
 	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
+    grep = grep --line-number
 	l = log --oneline --decorate --graph -n10
 	ll = !tig
 	o = open
