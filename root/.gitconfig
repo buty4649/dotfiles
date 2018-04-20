@@ -3,14 +3,14 @@
 	name = buty
 [ghq]
 	root = ~/src
-[hub]
-	host = git.pepabo.com
 [include]
 	path = ~/.gitconfig.local
 [alias]
-    a = !"git status --short | awk '!/^[DR] /' | peco | awk '{print $NF}' | xargs -r git add"
+    a = !"git status --short | awk '!/^[ADRM] /' | peco | awk '{print $NF}' | xargs -r git add"
 	br = branch
 	cm = commit -v
+	cma = commit -v --amend
+	cman = commit -v --amend --no-edit
 	c = !"git branch | awk '!/^\\*/' | peco | xargs -r git checkout"
 	co = checkout
 	cob = checkout -b
@@ -18,6 +18,8 @@
     cof = !"git status --short | peco | awk '{print $2}' | xargs -r git checkout --"
 	comp = !"git checkout master && git pull"
     d = diff
+    dc = diff --cached
+    g = grep
 	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
     grep = grep --line-number
 	l = log --oneline --decorate --graph -n10
