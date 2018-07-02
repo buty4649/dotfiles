@@ -1,0 +1,120 @@
+#!/bin/bash
+
+function lineselector() {
+    fzf-tmux "$@"
+}
+
+function gcd() {
+    ghq_top_dir="$(git config --list | awk -F= '/^ghq.root/{print $2}' | sed 's,^~,'$HOME',')"
+    [ $# -ne 0 ] && _query_string="$@"
+    local selected_dir=$(ghq list | lineselector --query "${_query_string}")
+    if [ -n "$selected_dir" ]; then
+        cd "${ghq_top_dir}/${selected_dir}"
+    fi
+}
+
+function mkr-hosts() {
+    mkr hosts -s ${MACKEREL_SERVICE:-JUGEM} -r $1 | jq -r ".[].name" | sort
+}
+
+function _symbol_status() {
+    local last_status=$?
+    local good_symbol='\U1f603'
+    local bad_symbol='\U1f631'
+    [ $last_status -eq 0 ] && echo -en $good_symbol || echo -en $bad_symbol
+    echo -n '  '
+}
+
+function _random_symbol() {
+    local symbols=(
+        '\U1F363'   # :sushi:
+        '\U1F359'   # :rice_ball:
+        '\U1F31F'   # :star2:
+        '\U1F525'   # :fire:
+        '\U1F530'   # :beginner;
+        '\U1F602'   # :joy:
+        '\U1F603'   # :smiley:
+        '\U1F60B'   # :yum:
+        '\U1F64F'   # :pray:
+        '\U1F607'   # :innocent:
+        '\U1F408'   # :cat2:
+        '\U1F415'   # :dog2:
+    )
+    echo -en "${symbols[$(($RANDOM % ${#symbols[@]}))]}"
+    echo -n  '  '
+}
+
+function each() {
+    if [[ $* =~ {} ]]; then
+        xargs -L1 -I{} "$@"
+    else
+        xargs -L1 -I{} "$@" {}
+    fi
+}
+
+function puts() {
+    echo "$@" | tr ' ' '\n'
+}
+
+function _line_separater() {
+    echo -e '\U2500 \U2500 \U2500 \U2500'
+}
+
+p() { peco | while read LINE; do $@ $LINE; done }
+
+git-root() {
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        cd `git rev-parse --show-toplevel`
+    fi
+}
+
+[ -f "/usr/local/etc/bash_completion" ] && . /usr/local/etc/bash_completion
+
+for i in git-completion.bash git-prompt.sh
+do
+    [ -f "$(brew --prefix)/etc/bash_completion.d/$i" ] && . "$(brew --prefix)/etc/bash_completion.d/$i"
+done
+
+# aliasでも補完されるようにする
+complete -o bashdefault -o default -o nospace -F _git g
+
+alias git='hub'
+#alias ghe='GITHUB_HOST=git.pepabo.com hub'
+alias ls='ls --color'
+alias g='git'
+alias gc='git commit'
+alias gg='git grep'
+alias ggp='git gpush'
+alias be='bundle exec'
+alias bi='bundle install'
+
+alias v='vagrant'
+alias vu='vagrant up'
+alias vs='vagrant suspend'
+alias vd='vagrant destroy'
+alias vp='vagrant provision'
+alias vssh='vagrant ssh'
+
+# ja_JP.UTF-8がサーバにないとエラーになってつらい
+alias ssh='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 ssh'
+
+alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF.read))"'
+
+eval "$(gdircolors -b)"
+#eval "$(docker-machine env)"
+
+export PS1='$(_line_separater)\n$(_random_symbol):\w$(__git_ps1 " (\[\e[0;31m\]%s\[\e[00m\])")\n\$ '
+export GOPATH=$HOME
+
+if [ -n "$TMUX" ];then
+    export PATH="$HOME/bin:$PATH"
+    eval "$(rbenv init --no-rehash -)"
+    eval "$(pyenv init --no-rehash -)"
+    eval "$(plenv init --no-rehash -)"
+    eval "$(direnv hook bash)"
+fi
+
+# see. http://q.hatena.ne.jp/1365659975
+stty -echoctl
+
+[ -x "$HOME/.bash_profile.local" ] && . $HOME/.bash_profile.local
