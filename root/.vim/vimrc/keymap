@@ -2,7 +2,14 @@ let mapleader=","
 
 " タブ操作
 nnoremap L gt
+
 nnoremap H gT
+
+" F1がうざいので無効化
+nnoremap <silent> <F1> <nop>
+
+" 検索ハイライトを消す
+nnoremap <silent> <ESC><ESC> <ESC>:nohlsearch<CR>
 
 " glidenote/memolist
 nnoremap <Leader>mn  :MemoNew<CR>
@@ -17,6 +24,7 @@ inoremap <C-f> <Right>
 
 " -- -- snip -- --
 vmap <silent> <C-s> s-- -- snip -- --<ESC>0
+vmap <silent> <C-d> do<details><CR><summary></summary><CR><CR></details><ESC>kpkk9l
 
 " クリップボード(*レジスタ)にコピーする
 vnoremap y "*y
