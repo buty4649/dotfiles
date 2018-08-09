@@ -20,8 +20,18 @@ do
         echo "Error: file exists !! $DST"
         exit 1
     else
-        ln -sv "$SRC" "$DST"
+        ln -svf "$SRC" "$DST"
     fi
+done
+
+# bin配下をコピー
+mkdir -p "${HOME}/bin"
+find bin/ -mindepth 1 -maxdepth 1 -type f |
+while read FILENAME
+do
+    SRC="$WORKDIR/$FILENAME"
+    DST="$HOME/bin/$(basename "$FILENAME")"
+    ln -svf "$SRC" "$DST"
 done
 
 [ -x "./install_${MARCH}.sh" ] && ./install_${MARCH}.sh
