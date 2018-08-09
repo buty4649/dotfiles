@@ -1,10 +1,3 @@
-define :ln do
-  dotfile = File.join(ENV['HOME'], params[:name])
-  link dotfile do
-    to File.expand_path("files/#{params[:name]}", File.dirname(__FILE__))
-  end
-end
-
 %w(
   .bash_profile
   .bashrc
@@ -17,5 +10,9 @@ end
   .vim
   .vimrc
 ).each do |file|
-  ln file
+  dotfile = File.join(ENV['HOME'], file)
+  link dotfile do
+    to File.expand_path("files/#{file}", File.dirname(__FILE__))
+    force true
+  end
 end
