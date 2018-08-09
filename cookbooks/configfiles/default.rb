@@ -15,10 +15,10 @@ directory File.join(homedir, 'bin')
   .vimrc
   bin/git-open
   bin/tmux-snippets.sh
-).each do |file|
-  dotfile = File.join(homedir, file)
+).each do |path|
+  dotfile = File.join(homedir, path)
   link dotfile do
-    to File.expand_path("files/#{file}", File.dirname(__FILE__))
+    to File.expand_path("files/#{path}", File.dirname(__FILE__))
     force true
   end
 end
