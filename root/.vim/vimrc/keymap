@@ -29,4 +29,8 @@ vmap <silent> <C-d> do<details><CR><summary></summary><CR><CR></details><ESC>kpk
 " クリップボード(*レジスタ)にコピーする
 vnoremap y "*y
 
+" コピペできるようにする
+nnoremap <S-Insert> "+gP
+inoremap <S-Insert> <C-o>"+gP
+
 " vim:ft=vim:et:ts=2:sw=2:sts=2
