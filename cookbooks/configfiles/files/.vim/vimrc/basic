@@ -46,7 +46,7 @@ let b:is_bash = 1       " bashスクリプトしか使わない
 " カラースキームの設定
 set background=dark
 let g:solarized_termtrans=1 " 透過色を使用
-colorscheme solarized
+silent! colorscheme solarized
 
 " Windowsのみテンポラリを変更する
 if has('win32') || has('win64')
