@@ -17,6 +17,5 @@ Session.vim
 *.elc
 samples
 
-root/.vim/plugged
-root/.vim/.netrwhist
-root/.vimrc_local
+cookbooks/configfiles/files/.vim/.netrwhist
+cookbooks/configfiles/files/.vim/plugged
