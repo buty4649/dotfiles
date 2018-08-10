@@ -10,6 +10,7 @@ include_recipe "../cookbooks/cica-font"
 include_recipe "../cookbooks/tig"
 include_recipe "../cookbooks/peco"
 include_recipe "../cookbooks/firefox"
+include_recipe "../cookbooks/gsettings"
 
 # Firefox/ThunerbirdはDL版を使うのでパッケージ版は消す
 %w(firefox thunderbird).each do |name|
