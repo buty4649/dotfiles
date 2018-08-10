@@ -5,6 +5,7 @@ include_recipe "../cookbooks/slack"
 include_recipe "../cookbooks/tmux"
 include_recipe "../cookbooks/ulauncher"
 include_recipe "../cookbooks/snap-apps"
+include_recipe "../cookbooks/cica-font"
 
 # Firefox/ThunerbirdはSNAP版を使うのでパッケージ版は消す
 %w(firefox thunderbird).each do |name|
