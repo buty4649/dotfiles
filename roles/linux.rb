@@ -6,12 +6,12 @@ include_recipe "../cookbooks/alacritty"
 include_recipe "../cookbooks/slack"
 include_recipe "../cookbooks/tmux"
 include_recipe "../cookbooks/ulauncher"
-include_recipe "../cookbooks/snap-apps"
 include_recipe "../cookbooks/cica-font"
 include_recipe "../cookbooks/tig"
 include_recipe "../cookbooks/peco"
+include_recipe "../cookbooks/firefox"
 
-# Firefox/ThunerbirdはSNAP版を使うのでパッケージ版は消す
+# Firefox/ThunerbirdはDL版を使うのでパッケージ版は消す
 %w(firefox thunderbird).each do |name|
   package name do
     action :remove
