@@ -1,3 +1,5 @@
+package "vim"
+
 vim_colors_solarizes = File.join(ENV['HOME'], '.vim/plugged/vim-colors-solarized')
 execute 'PlugInstall' do
   command 'vim +PlugInstall +qall'
