@@ -9,3 +9,13 @@ link configfile do
   to File.expand_path("files/alacritty.yml", File.dirname(__FILE__))
   force true
 end
+
+execute 'Install alacritty' do
+  version = '0.1.0-git512fc610+vte'
+  command <<__COMMAND__
+wget -P /tmp https://github.com/buty4649/alacritty-package-builder/releases/download/v#{version}/alacritty_#{version}_amd64.deb
+sudo apt-get install -y /tmp/alacritty_#{version}_amd64.deb
+rm /tmp/alacritty_#{version}_amd64.deb
+__COMMAND__
+  only_if %q{test "`dpkg-query --show --showformat '${Version}' alacritty`" != "#{version}"}
+end
