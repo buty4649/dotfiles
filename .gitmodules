@@ -1,0 +1,3 @@
+[submodule "plugins/mitamae-plugin-recipe-use_sudo"]
+	path = plugins/mitamae-plugin-recipe-use_sudo
+	url = https://github.com/buty4649/mitamae-plugin-recipe-use_sudo.git

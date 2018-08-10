@@ -1,4 +1,4 @@
-include_recipe "../cookbooks/use_sudo"
+include_recipe "use_sudo::ubuntu"
 
 include_recipe "../cookbooks/configfiles"
 include_recipe "../cookbooks/vim"
