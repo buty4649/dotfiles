@@ -5,4 +5,5 @@ wget -P /tmp https://github.com/Ulauncher/Ulauncher/releases/download/#{version}
 sudo apt-get install -y /tmp/ulauncher_#{version}_all.deb
 rm /tmp/ulauncher_#{version}_all.deb
 __COMMAND__
+  not_if "dpkg-query -f '${Status} ${Version}' -W ulauncher | grep -E '^(install|hold) ok installed #{version}$'"
 end

@@ -17,5 +17,5 @@ wget -P /tmp https://github.com/buty4649/alacritty-package-builder/releases/down
 sudo apt-get install -y /tmp/alacritty_#{version}_amd64.deb
 rm /tmp/alacritty_#{version}_amd64.deb
 __COMMAND__
-  only_if %q{test "`dpkg-query --show --showformat '${Version}' alacritty`" != "#{version}"}
+  not_if "dpkg-query -f '${Status} ${Version}' -W alacritty | grep -E '^(install|hold) ok installed #{version.gsub(/\+/, '\+')}$'"
 end

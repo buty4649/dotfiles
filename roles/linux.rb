@@ -11,7 +11,7 @@ include_recipe "../cookbooks/cica-font"
 %w(firefox thunderbird).each do |name|
   execute "Remove #{name} package" do
     command "sudo apt-get purge -y #{name}"
-    only_if "dpkg -l #{name}"
+    only_if "dpkg-query -f '${Status}' -W #{name} | grep -E '^(install|hold) ok installed$'"
   end
 end
 
