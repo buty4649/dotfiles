@@ -2,6 +2,7 @@ include_recipe "../cookbooks/configfiles"
 include_recipe "../cookbooks/vim"
 include_recipe "../cookbooks/alacritty"
 include_recipe "../cookbooks/slack"
+include_recipe "../cookbooks/tmux"
 
 homedir = ENV['HOME']
 
