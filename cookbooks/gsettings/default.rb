@@ -8,6 +8,7 @@ define :gsettings, value:nil do
   end
 end
 
+# CapsLockをCtrlにする
 gsettings 'org.gnome.desktop.input-sources/xkb-options' do
   value "['ctrl:nocaps']"
 end
