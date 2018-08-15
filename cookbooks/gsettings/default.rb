@@ -38,3 +38,8 @@ end
 gsettings "org.gnome.desktop.interface/scaling-factor" do
   value "1"
 end
+
+## タッチパッドのナチュラルスクロールをやめる
+gsettings "org.gnome.desktop.peripherals.touchpad/natural-scroll" do
+  value "false"
+end
