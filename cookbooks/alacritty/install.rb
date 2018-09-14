@@ -1,15 +1,3 @@
-homedir = ENV['HOME']
-
-configdir = File.join(homedir, '.config/alacritty')
-configfile = File.join(configdir, 'alacritty.yml')
-
-directory configdir
-
-link configfile do
-  to File.expand_path("files/alacritty.yml", File.dirname(__FILE__))
-  force true
-end
-
 execute 'Install alacritty' do
   version = '0.1.0-git512fc610+vte'
   command <<__COMMAND__

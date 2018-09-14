@@ -20,7 +20,7 @@
     d = diff
     dc = diff --cached
     g = grep
-	gpush = !"git branch | awk '/^\\*/{print $2;exit}' | xargs git push origin"
+	gpush = !"git rev-parse --abbrev-ref HEAD | xargs git push origin"
     grep = grep --line-number
 	l = log --oneline --decorate --graph -n10
 	ll = !tig

@@ -22,7 +22,7 @@ end
 homedir = ENV['HOME']
 
 {
-  'ダウンロード' => 'Download',
+  'ダウンロード' => 'Downloads',
   'デスクトップ' => 'Desktop',
   'ドキュメント' => 'Document',
   'ピクチャ'     => 'Picture',

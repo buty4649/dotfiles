@@ -10,9 +10,16 @@ font:
   scale_with_dpi: false
 visual_bell:
   duration: 0
+shell:
+  program: /bin/bash
+  args:
+    - --login
 background_opacity: 0.75
 live_config_reload: true
 key_bindings:
+  # Ctrl-CとSuper-Vをスワップする
+  - { key: V,        mods: Control, action: Paste                        }
+  - { key: V,        mods: Super,   chars: "\x16"                        }
   - { key: Insert,   mods: Shift,   action: Paste                        }
   - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }
   - { key: Left,     mods: Control, chars: "\x1b[1;5D"                   }

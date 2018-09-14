@@ -45,7 +45,7 @@ function _random_symbol() {
 }
 
 function each() {
-    if [[ $* =~ {} ]]; then
+    if [[ $@ =~ \{\} ]]; then
         xargs -L1 -I{} "$@"
     else
         xargs -L1 -I{} "$@" {}
@@ -68,18 +68,17 @@ git-root() {
     fi
 }
 
-[ -f "/usr/local/etc/bash_completion" ] && . /usr/local/etc/bash_completion
-
-for i in git-completion.bash git-prompt.sh
-do
-    [ -f "$(brew --prefix)/etc/bash_completion.d/$i" ] && . "$(brew --prefix)/etc/bash_completion.d/$i"
-done
+#[ -f "/usr/local/etc/bash_completion" ] && . /usr/local/etc/bash_completion
+#
+#for i in git-completion.bash git-prompt.sh
+#do
+#    [ -f "$(brew --prefix)/etc/bash_completion.d/$i" ] && . "$(brew --prefix)/etc/bash_completion.d/$i"
+#done
 
 # aliasでも補完されるようにする
 complete -o bashdefault -o default -o nospace -F _git g
 
-alias git='hub'
-#alias ghe='GITHUB_HOST=git.pepabo.com hub'
+if type hub > /dev/null 2>&1 ; then alias git='hub' ;fi
 alias ls='ls --color'
 alias g='git'
 alias gc='git commit'
@@ -100,18 +99,19 @@ alias ssh='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 ssh'
 
 alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF.read))"'
 
-eval "$(gdircolors -b)"
+#eval "$(gdircolors -b)"
 #eval "$(docker-machine env)"
 
 export PS1='$(_line_separater)\n$(_random_symbol):\w$(__git_ps1 " (\[\e[0;31m\]%s\[\e[00m\])")\n\$ '
 export GOPATH=$HOME
 
-if [ -n "$TMUX" ];then
+if [ -z "$TMUX" ];then
     export PATH="$HOME/bin:$PATH"
-    eval "$(rbenv init --no-rehash -)"
-    eval "$(pyenv init --no-rehash -)"
-    eval "$(plenv init --no-rehash -)"
-    eval "$(direnv hook bash)"
+    [ -d "$HOME/.local/bin" ] && export PATH="${HOME}/.local/bin:$PATH"
+    if type rbenv > /dev/null 2>&1 ; then eval "$(rbenv init --no-rehash -)"; fi
+#    eval "$(pyenv init --no-rehash -)"
+#    eval "$(plenv init --no-rehash -)"
+#    eval "$(direnv hook bash)"
 fi
 
 # see. http://q.hatena.ne.jp/1365659975

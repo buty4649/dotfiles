@@ -12,8 +12,26 @@ org.gnome.shell.extensions.dash-to-dock:
 # HiDPI対応
 # https://wiki.archlinux.jp/index.php/GNOME/%E3%83%92%E3%83%B3%E3%83%88%E3%81%A8%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF#Retina_.28HiDPI.29_.E3.83.87.E3.82.A3.E3.82.B9.E3.83.97.E3.83.AC.E3.82.A4.E3.81.AE.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88
 org.gnome.desktop.interface:
-  scaling-factor: 1
+  scaling-factor: 2
 
 # タッチパッドのナチュラルスクロールをやめる
 org.gnome.desktop.peripherals.touchpad:
   natural-scroll: false
+
+# タスクバーの設定
+org.gnome.desktop.interface:
+  clock-show-date: true           # 日付を表示する
+  show-battery-percentage: true   # バッテリー残量のパーセンテージを表示する
+
+# ショートカットキーの設定
+org.gnome.desktop.wm.keybindings:
+  maximize: <Primary><Shift>plus  # ウインドウを最大化する
+org.gnome.shell.keybindings:
+  toggle-message-tray: []         # 通知トレイ表示を無効化(Super+Vを別に割り当てたいので)
+org.gnome.mutter.keybindings:
+  toggle-tiled-left: <Primary><Shift>h   # ウインドウを左半分に表示
+  toggle-tiled-right: <Primary><Shift>l  # ウインドウを左半分に表示
+
+# キーリピートの設定
+org.gnome.desktop.peripherals.keyboard:
+  delay: 250
