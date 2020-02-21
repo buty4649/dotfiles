@@ -1,6 +1,6 @@
 include_recipe "use_sudo::ubuntu"
 
-include_recipe "../cookbooks/configfiles"
+include_recipe '../cookbooks/rcm'
 include_recipe "../cookbooks/vim"
 include_recipe "../cookbooks/alacritty"
 include_recipe "../cookbooks/slack"
