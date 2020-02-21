@@ -11,6 +11,7 @@ endfunction
 " プラグインの定義 ------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'dag/vim-fish'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'voxpupuli/vim-puppet'
 

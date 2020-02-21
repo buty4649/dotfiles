@@ -32,7 +32,7 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$
 [fetch]
 	prune = true
 [core]
-	editor = vim -c \"set fenc=utf8\"
+	editor = vim -X -c \"set fenc=utf8\"
 [init]
 	templatedir = ~/.git_template
 [rebase]
@@ -42,3 +42,5 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$
     diff = S ?!git commit --squash %(commit)
     main = F ?!git commit --fixup %(commit)
     main = S ?!git commit --squash %(commit)
+[grep]
+	lineNumber = true

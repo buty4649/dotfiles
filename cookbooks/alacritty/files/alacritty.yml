@@ -2,23 +2,38 @@ window:
   dimensions:
     columns: 80
     lines: 24
-  decorations: true
+  decorations: none
 font:
   normal:
-    family: Cica
-  size: 24
-  scale_with_dpi: false
+    family: monospace
+  size: 12
+colors:
+  primary:
+    background: '0x000000'
+    foreground: '0xeaeaea'
 visual_bell:
   duration: 0
 shell:
   program: /bin/bash
   args:
     - --login
-background_opacity: 0.75
+mouse:
+  url:
+    launcher: None
+background_opacity: 0.8
 live_config_reload: true
+#debug:
+#  log_level: Trace
+#  print_events: true
 key_bindings:
   # Ctrl-CとSuper-Vをスワップする
-  - { key: V,        mods: Control, action: Paste                        }
+  - { key: C,        mods: Control|Shift, action: Copy                   }
+  - { key: Key0,     mods: Control,       action: ResetFontSize          }
+  - { key: Semicolon,mods: Control,       action: IncreaseFontSize       }
+  - { key: Add,      mods: Control,       action: IncreaseFontSize       }
+  - { key: Subtract, mods: Control,       action: DecreaseFontSize       }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize       }
+  - { key: V,        mods: Control|Shift, action: Paste                  }
   - { key: V,        mods: Super,   chars: "\x16"                        }
   - { key: Insert,   mods: Shift,   action: Paste                        }
   - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }

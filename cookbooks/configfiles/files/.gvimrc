@@ -2,8 +2,9 @@ colorscheme sakura
 
 " クリップボード関連
 if has("x11")
-  "nnoremap <C-V> "+P
-  inoremap <C-v> <C-o>"+P
+  noremap  <S-Insert> "+gp
+  inoremap <S-Insert> <C-o>"+gP
+  inoremap <C-v> <C-o>"+gP
   vnoremap y "+y
 else
   nnoremap <C-v> "*p
