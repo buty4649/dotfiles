@@ -5,7 +5,7 @@ window:
   decorations: none
 font:
   normal:
-    family: monospace
+    family: Cica
   size: 12
 colors:
   primary:
@@ -20,9 +20,12 @@ shell:
 mouse:
   url:
     launcher: None
+scrolling:
+  history: 0
 background_opacity: 0.8
 live_config_reload: true
 #debug:
+#  render_timer: true
 #  log_level: Trace
 #  print_events: true
 key_bindings:

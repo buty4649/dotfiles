@@ -7,25 +7,26 @@
 	path = ~/.gitconfig.local
 [alias]
     a = !"git status --short | awk '!/^[ADRM] /' | peco | awk '{print $NF}' | xargs -r git add"
-	br = branch
-	cm = commit -v
-	cma = commit -v --amend
-	cman = commit -v --amend --no-edit
-	c = !"git branch | awk '!/^\\*/' | peco | xargs -r git checkout"
-	co = checkout
-	cob = checkout -b
-    cobr = !"git branch -r | grep -vE '/(HEAD|master$)' | sed -e 's,origin/,,g' | peco | xargs -r -I{} git checkout -b {} origin/{}"
-    cof = !"git status --short | peco | awk '{print $2}' | xargs -r git checkout --"
-	comp = !"git checkout master && git pull"
+    br = branch
+    cm = commit -v
+    cma = commit -v --amend
+    cman = commit -v --amend --no-edit
     d = diff
     dc = diff --cached
     g = grep
-	gpush = !"git rev-parse --abbrev-ref HEAD | xargs git push origin"
+    gpush = push origin HEAD
     grep = grep --line-number
-	l = log --oneline --decorate --graph -n10
-	ll = !tig
-	o = open
-	st = status --short --branch
+    l = log --oneline --decorate --graph -n10
+    ll = !tig
+    m = smp
+    o = open
+    r = !"git status --short | peco | awk '{print $2}' | xargs -r git restore"
+    s = !"git branch | awk '!/^\\*/' | peco | xargs -r git switch"
+    sc = switch -c
+    sr = !"git branch -r | grep -vE '/(HEAD|master$)' | sed -e 's,^ *origin/,,g' | peco | xargs -r -I{} git switch -c {} origin/{}"
+    st = status --short --branch
+    smp = !"git switch master && git pull"
+    sw = switch
 
 # see http://qiita.com/kyanny/items/10a57a4f1d2806e3a3b8
 delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -r git branch -d"
