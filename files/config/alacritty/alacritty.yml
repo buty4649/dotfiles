@@ -11,7 +11,7 @@ colors:
   primary:
     background: '0x000000'
     foreground: '0xeaeaea'
-visual_bell:
+bell:
   duration: 0
 shell:
   program: /bin/bash
