@@ -7,5 +7,9 @@ link File.join(homedir, ".dotfiles") do
 end
 
 execute 'Execute rcup' do
-  command 'rcup'
+  # ~/.bashrcが実体ファイルだとrcupがコケるので消しておく
+  command << __COMMAND__
+[ -h ~/.bashrc ] || rm ~/.bashrc
+rcup
+__COMMAND__
 end
