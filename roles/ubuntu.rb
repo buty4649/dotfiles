@@ -2,7 +2,7 @@ include_recipe "use_sudo::ubuntu"
 
 %w[
   firefox thunderbird rcm vim tmux ulauncher cica-font
-  tig peco firefox gsettings
+  tig peco gsettings
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
