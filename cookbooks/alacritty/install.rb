@@ -1,5 +1,5 @@
 execute 'Install alacritty' do
-  version = '0.1.0-git512fc610+vte'
+  version = '0.5.0'
   command <<__COMMAND__
 wget -P /tmp https://github.com/buty4649/alacritty-package-builder/releases/download/v#{version}/alacritty_#{version}_amd64.deb
 sudo apt-get install -y /tmp/alacritty_#{version}_amd64.deb

@@ -1,22 +1,10 @@
 include_recipe "use_sudo::ubuntu"
 
-include_recipe '../cookbooks/rcm'
-include_recipe "../cookbooks/vim"
-include_recipe "../cookbooks/alacritty"
-include_recipe "../cookbooks/slack"
-include_recipe "../cookbooks/tmux"
-include_recipe "../cookbooks/ulauncher"
-include_recipe "../cookbooks/cica-font"
-include_recipe "../cookbooks/tig"
-include_recipe "../cookbooks/peco"
-include_recipe "../cookbooks/firefox"
-include_recipe "../cookbooks/gsettings"
-
-# Firefox/ThunerbirdはDL版を使うのでパッケージ版は消す
-%w(firefox thunderbird).each do |name|
-  package name do
-    action :remove
-  end
+%w[
+  rcm vim slack tmux ulauncher cica-font
+  tig peco firefox gsettings
+].each do |name|
+  include_recipe "../../cookbooks/#{name}"
 end
 
 homedir = ENV['HOME']
