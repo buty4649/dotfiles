@@ -11,4 +11,12 @@ if ! which mitamae > /dev/null; then
         chmod +x /usr/local/bin/mitamae"
 fi
 
+if ! which git > /dev/null; then
+    sudo -p "$SUDO_PROMPT" apt-get install -y git
+fi
+
+REPODIR="${HOME}/src/github.com/buty4649"
+mkdir -p "$REPODIR"
+cd "$REPODIR"
+
 mitamae local $* roles/ubuntu.rb
