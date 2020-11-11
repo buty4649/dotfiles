@@ -28,9 +28,9 @@ org.gnome.desktop.interface:
 #  maximize: <Primary><Shift>plus  # ウインドウを最大化する
 org.gnome.shell.keybindings:
   toggle-message-tray: []         # 通知トレイ表示を無効化(Super+Vを別に割り当てたいので)
-org.gnome.mutter.keybindings:
-  toggle-tiled-left: <Primary><Shift>h   # ウインドウを左半分に表示
-  toggle-tiled-right: <Primary><Shift>l  # ウインドウを左半分に表示
+#org.gnome.mutter.keybindings:
+#  toggle-tiled-left: <Primary><Shift>h   # ウインドウを左半分に表示
+#  toggle-tiled-right: <Primary><Shift>l  # ウインドウを左半分に表示
 
 # キーリピートの設定
 org.gnome.desktop.peripherals.keyboard:
