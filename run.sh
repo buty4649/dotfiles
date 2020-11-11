@@ -19,7 +19,7 @@ REPODIR="${HOME}/src/github.com/buty4649"
 mkdir -p "$REPODIR"
 cd "$REPODIR"
 if [ ! -d dotfiles ]; then
-    git clone https://github.com/buty4649/dotfiles.git
+    git clone --recursive --depth 1 https://github.com/buty4649/dotfiles.git
 fi
 cd dotfiles
 
