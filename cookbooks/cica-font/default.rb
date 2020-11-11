@@ -8,7 +8,7 @@ execute 'Install Cica font' do
   command <<__COMMAND__
 wget -P /tmp https://github.com/miiton/Cica/releases/download/#{version}/Cica_#{version}_with_emoji.zip
 pushd #{fontsdir}
-unzip /tmp/Cica_#{version}.zip Cica-Bold.ttf Cica-BoldItalic.ttf Cica-Regular.ttf Cica-RegularItalic.ttf
+unzip /tmp/Cica_#{version}_with_emoji.zip Cica-Bold.ttf Cica-BoldItalic.ttf Cica-Regular.ttf Cica-RegularItalic.ttf
 popd
 rm /tmp/Cica_#{version}.zip
 __COMMAND__
