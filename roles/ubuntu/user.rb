@@ -1,7 +1,7 @@
 include_recipe "use_sudo::ubuntu"
 
 %w[
-  rcm vim slack tmux ulauncher cica-font
+  rcm vim tmux ulauncher cica-font
   tig peco firefox gsettings
 ].each do |name|
   include_recipe "../../cookbooks/#{name}"
