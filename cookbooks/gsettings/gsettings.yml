@@ -24,8 +24,8 @@ org.gnome.desktop.interface:
   show-battery-percentage: true   # バッテリー残量のパーセンテージを表示する
 
 # ショートカットキーの設定
-org.gnome.desktop.wm.keybindings:
-  maximize: <Primary><Shift>plus  # ウインドウを最大化する
+#org.gnome.desktop.wm.keybindings:
+#  maximize: <Primary><Shift>plus  # ウインドウを最大化する
 org.gnome.shell.keybindings:
   toggle-message-tray: []         # 通知トレイ表示を無効化(Super+Vを別に割り当てたいので)
 org.gnome.mutter.keybindings:
