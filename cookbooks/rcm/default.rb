@@ -8,7 +8,7 @@ end
 
 execute 'Execute rcup' do
   # ~/.bashrcが実体ファイルだとrcupがコケるので消しておく
-  command << __COMMAND__
+  command <<__COMMAND__
 [ -h ~/.bashrc ] || rm ~/.bashrc
 rcup
 __COMMAND__
