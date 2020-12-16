@@ -3,7 +3,7 @@ include_recipe "use_sudo::ubuntu"
 %w[
   firefox thunderbird rcm tmux ulauncher cica-font
   tig peco gsettings openvpn mozc ghq alacritty fish-shell
-  lsd vscode
+  lsd vscode fzf
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
