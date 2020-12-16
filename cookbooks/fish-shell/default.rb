@@ -7,5 +7,5 @@ wget -P /tmp https://github.com/starship/starship/releases/download/v#{version}/
 tar -C ${HOME}/bin -zxf /tmp/starship-x86_64-unknown-linux-gnu.tar.gz
 rm /tmp/starship-x86_64-unknown-linux-gnu.tar.gz
 __COMMAND__
-  not_if "starship -V | grep -q 'startship #{version}'"
+  not_if "starship -V | grep -q 'starship #{version}'"
 end
