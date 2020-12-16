@@ -1,0 +1,1 @@
+package "mozc-utils-gui"
