@@ -9,7 +9,4 @@
   end
 end
 
-execute 'Install Firefox from snapcraft' do
-  command "sudo snap install firefox"
-  only_if %Q{test -z "`snap list | grep firefox`"}
-end
+snap 'firefox'

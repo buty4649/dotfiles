@@ -1,9 +1,10 @@
 include_recipe "use_sudo::ubuntu"
+include_recipe "ubuntu::snap"
 
 %w[
   firefox thunderbird rcm tmux ulauncher cica-font
   tig peco gsettings openvpn mozc ghq alacritty fish-shell
-  lsd vscode fzf textern rbenv python3 zoom
+  lsd vscode fzf textern rbenv python3 zoom rambox
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
