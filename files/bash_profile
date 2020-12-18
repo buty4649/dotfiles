@@ -108,6 +108,7 @@ export GOPATH=$HOME
 if [ -z "$TMUX" ];then
     export PATH="$HOME/bin:$PATH"
     [ -d "$HOME/.local/bin" ] && export PATH="${HOME}/.local/bin:$PATH"
+    [ -d "$HOME/.rbenv/bin" ] && export PATH="${HOME}/.rbenv/bin:$PATH"
     if type rbenv > /dev/null 2>&1 ; then eval "$(rbenv init --no-rehash -)"; fi
 #    eval "$(pyenv init --no-rehash -)"
 #    eval "$(plenv init --no-rehash -)"

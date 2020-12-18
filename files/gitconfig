@@ -45,3 +45,5 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|master$|develop$
     main = S ?!git commit --squash %(commit)
 [grep]
 	lineNumber = true
+[pull]
+	rebase = true
