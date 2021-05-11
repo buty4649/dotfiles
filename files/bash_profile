@@ -103,7 +103,7 @@ alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF.read))"'
 #eval "$(docker-machine env)"
 
 export PS1='$(_line_separater)\n$(_random_symbol):\w$(__git_ps1 " (\[\e[0;31m\]%s\[\e[00m\])")\n\$ '
-export GOPATH=$HOME
+export GOPATH=$HOME/go
 
 if [ -z "$TMUX" ];then
     export PATH="$HOME/bin:$PATH"
