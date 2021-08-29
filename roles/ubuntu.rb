@@ -16,7 +16,7 @@ homedir = ENV['HOME']
 {
   'ダウンロード' => 'Downloads',
   'デスクトップ' => 'Desktop',
-  'ドキュメント' => 'Document',
+  'ドキュメント' => 'Documents',
   'ピクチャ'     => 'Picture',
 }.each do |src, dst|
   link File.join(homedir, dst) do
