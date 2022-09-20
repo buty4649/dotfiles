@@ -1,9 +1,5 @@
 #!/bin/bash
 
-function lineselector() {
-    fzf-tmux "$@"
-}
-
 function gcd() {
     ghq_top_dir="$(git config --list | awk -F= '/^ghq.root/{print $2}' | sed 's,^~,'$HOME',')"
     [ $# -ne 0 ] && _query_string="$@"
@@ -11,10 +7,6 @@ function gcd() {
     if [ -n "$selected_dir" ]; then
         cd "${ghq_top_dir}/${selected_dir}"
     fi
-}
-
-function mkr-hosts() {
-    mkr hosts -s ${MACKEREL_SERVICE:-JUGEM} -r $1 | jq -r ".[].name" | sort
 }
 
 function _symbol_status() {
@@ -68,54 +60,21 @@ git-root() {
     fi
 }
 
-#[ -f "/usr/local/etc/bash_completion" ] && . /usr/local/etc/bash_completion
-#
-#for i in git-completion.bash git-prompt.sh
-#do
-#    [ -f "$(brew --prefix)/etc/bash_completion.d/$i" ] && . "$(brew --prefix)/etc/bash_completion.d/$i"
-#done
-
 # aliasでも補完されるようにする
 complete -o bashdefault -o default -o nospace -F _git g
 
-if type hub > /dev/null 2>&1 ; then alias git='hub' ;fi
-alias ls='ls --color'
-alias g='git'
-alias gc='git commit'
-alias gg='git grep'
-alias ggp='git gpush'
-alias be='bundle exec'
-alias bi='bundle install'
-
-alias v='vagrant'
-alias vu='vagrant up'
-alias vs='vagrant suspend'
-alias vd='vagrant destroy'
-alias vp='vagrant provision'
-alias vssh='vagrant ssh'
-
-# ja_JP.UTF-8がサーバにないとエラーになってつらい
-alias ssh='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 ssh'
-
-alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF.read))"'
-
-#eval "$(gdircolors -b)"
-#eval "$(docker-machine env)"
-
-export PS1='$(_line_separater)\n$(_random_symbol):\w$(__git_ps1 " (\[\e[0;31m\]%s\[\e[00m\])")\n\$ '
+#export PS1='$(_line_separater)\n$(_random_symbol):\w$(__git_ps1 " (\[\e[0;31m\]%s\[\e[00m\])")\n\$ '
 export GOPATH=$HOME/go
 
-if [ -z "$TMUX" ];then
-    export PATH="$HOME/bin:$PATH"
-    [ -d "$HOME/.local/bin" ] && export PATH="${HOME}/.local/bin:$PATH"
-    [ -d "$HOME/.rbenv/bin" ] && export PATH="${HOME}/.rbenv/bin:$PATH"
-    if type rbenv > /dev/null 2>&1 ; then eval "$(rbenv init --no-rehash -)"; fi
-#    eval "$(pyenv init --no-rehash -)"
-#    eval "$(plenv init --no-rehash -)"
-#    eval "$(direnv hook bash)"
+if [ -x "$HOME/.asdf/asdf.sh" ]; then
+    . "$HOME/.asdf/asdf.sh"
 fi
 
 # see. http://q.hatena.ne.jp/1365659975
 stty -echoctl
 
 [ -x "$HOME/.bash_profile.local" ] && . $HOME/.bash_profile.local
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi

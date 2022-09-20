@@ -1,8 +1,9 @@
 window:
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 120
+    lines: 48
   decorations: none
+  opacity: 0.8
 font:
   normal:
     family: Cica
@@ -14,15 +15,14 @@ colors:
 bell:
   duration: 0
 shell:
-  program: /bin/bash
-  args:
-    - --login
+  #program: .local/bin/exec_shell.sh
+  program: /usr/bin/fish
+env:
+  TERM: xterm-256color
 mouse:
-  url:
-    launcher: None
+  hide_when_typing: false
 scrolling:
   history: 0
-background_opacity: 0.8
 live_config_reload: true
 #debug:
 #  render_timer: true

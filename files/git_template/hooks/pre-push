@@ -2,9 +2,9 @@
 
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
-if [ "$CURRENT_BRANCH" = "master" ];then
+if [[ "$CURRENT_BRANCH" =~ ^(master|main)$ ]];then
     if [ -z "$ALLOW_GIT_MASTER_PUSH" -a -z "$(git config --get git.allow-master-push)" ];then
-        echo "WARN: It's the master branch !!"
+        echo "WARN: It's a master or main branch !!"
         echo 'If you want git push, please set either.'
         echo '* $ALLOW_GIT_MASTER_PUSH=1'
         echo '* git config --local git.allow-master-push 1'

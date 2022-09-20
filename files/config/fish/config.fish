@@ -1,4 +1,16 @@
-starship init fish | source
+if test -f "$HOME/.asdf/asdf.fish"
+    . $HOME/.asdf/asdf.fish
+    . $HOME/.asdf/completions/asdf.fish
+end
+
+if type starship > /dev/null 2>&1
+    starship init fish | source
+    asdf exec direnv hook fish | source
+end
+
+if test -d $HOME/.local/bin
+    set PATH "$HOME/.local/bin:$PATH"
+end
 
 abbr -a g git
 abbr -a gg git grep
@@ -6,6 +18,8 @@ abbr -a be bundle exec
 abbr -a bi bundle install
 
 alias ls='lsd'
+alias code='code -n'
+#alias ssh='TERM=xterm /usr/bin/ssh'
 
 bind \cf forward-word
 bind \cr isearch
@@ -18,9 +32,9 @@ end
 
 function each
     if string match -q -e "{}" -- $argv
-        xargs -r -L1 -I{} $argv
+        xargs -r -I{} $argv
     else
-        xargs -r -L1 -I{} $argv {}
+        xargs -r -I{} $argv {}
     end
 end
 
