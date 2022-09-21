@@ -8,6 +8,7 @@ user = ENV['USER']
 %w[
   build-essential python3 python-is-python3
   libevent-dev unzip zlib1g-dev libssl-dev libmysqlclient-dev
+  wslu
 ].each do |name|
   package name
 end
@@ -22,6 +23,7 @@ end
   direnv
   fzf
   ghq
+  github-cli
   peco
   ruby
   starship
