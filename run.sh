@@ -2,6 +2,15 @@
 
 set -xe
 
+if [[ $(uname -r) =~ WSL2$ ]]; then
+    PLATFORM=wsl2
+elif grep -q 'NAME="Ubuntu'; then
+    PLATFORM=ubuntu
+else
+    echo "Unkwon platform"
+    exit 1
+fi
+
 MITAME_VERSION=v1.14.0
 SUDO_PROMPT='[local sudo] Password: '
 
@@ -23,4 +32,4 @@ if [ ! -d dotfiles ]; then
 fi
 cd dotfiles
 
-mitamae local $* roles/ubuntu.rb
+mitamae local $* roles/${PLATFORM}.rb
