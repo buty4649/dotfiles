@@ -20,6 +20,7 @@ end
 end
 
 %w[
+  delta
   direnv
   fzf
   ghq
