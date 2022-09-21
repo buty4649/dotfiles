@@ -2,7 +2,7 @@
 
 set -xe
 
-MITAME_VERSION=v1.11.7
+MITAME_VERSION=v1.14.0
 SUDO_PROMPT='[local sudo] Password: '
 
 if ! which mitamae > /dev/null; then
