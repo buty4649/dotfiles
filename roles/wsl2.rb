@@ -4,9 +4,10 @@ homedir = ENV['HOME']
 user = ENV['USER']
 
 # libevent-dev,unzip is needed by tmux
+# zlib1g-dev,libssl-dev,libmysqlclient-dev is needed by ruby
 %w[
   build-essential python3 python-is-python3
-  libevent-dev unzip
+  libevent-dev unzip zlib1g-dev libssl-dev libmysqlclient-dev
 ].each do |name|
   package name
 end
@@ -22,6 +23,7 @@ end
   fzf
   ghq
   peco
+  ruby
   starship
   tmux
 ].each do |name|
