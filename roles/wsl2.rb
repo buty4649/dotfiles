@@ -3,10 +3,19 @@ include_recipe "use_sudo::ubuntu"
 homedir = ENV['HOME']
 user = ENV['USER']
 
+package 'build-essential'
+
 %w[
   asdf fish-shell rcm
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
+end
+
+%w[
+  starship
+  tmux
+].each do |name|
+  asdf name
 end
 
 # Windows側のディレクトリにシンボリックリンクを張る
