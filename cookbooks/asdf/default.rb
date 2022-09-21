@@ -31,6 +31,7 @@ __COMMAND__
 bash -c "
   source #{asdf_script}
   asdf install #{name} #{version}
+  asdf global #{name} #{version}
 "
 __COMMAND__
   end

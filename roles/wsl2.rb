@@ -3,15 +3,23 @@ include_recipe "use_sudo::ubuntu"
 homedir = ENV['HOME']
 user = ENV['USER']
 
-package 'build-essential'
+# libevent-dev,unzip is needed by tmux
+%w[
+  build-essential python3 python-is-python3
+  libevent-dev unzip
+].each do |name|
+  package name
+end
 
 %w[
-  asdf fish-shell rcm
+  asdf fish-shell lsd rcm
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
 
 %w[
+  direnv
+  peco
   starship
   tmux
 ].each do |name|
