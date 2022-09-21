@@ -1,5 +1,13 @@
+include_recipe "use_sudo::ubuntu"
+
 homedir = ENV['HOME']
 user = ENV['USER']
+
+%w[
+  asdf fish-shell
+].each do |name|
+  include_recipe "../cookbooks/#{name}"
+end
 
 # Windows側のディレクトリにシンボリックリンクを張る
 %w[
