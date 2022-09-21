@@ -19,6 +19,8 @@ end
 
 %w[
   direnv
+  fzf
+  ghq
   peco
   starship
   tmux
