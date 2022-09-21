@@ -4,7 +4,7 @@ homedir = ENV['HOME']
 user = ENV['USER']
 
 %w[
-  asdf fish-shell
+  asdf fish-shell rcm
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
