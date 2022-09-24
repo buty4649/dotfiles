@@ -1,5 +1,6 @@
 include_recipe "use_sudo::ubuntu"
 
+
 homedir = ENV['HOME']
 user = ENV['USER']
 
@@ -34,12 +35,14 @@ end
 end
 
 # Windows側のディレクトリにシンボリックリンクを張る
+userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
+userprofile_path = `wslpath "#{userprofile}"`.chomp
 %w[
   Documents
   Downloads
   Pictures
 ].each do |directory|
   link File.join(homedir, directory) do
-    to File.join("/mnt/c/Users", user, directory)
+    to File.join(userprofile_path, directory)
   end
 end
