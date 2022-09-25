@@ -37,6 +37,10 @@ end
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
 userprofile_path = `wslpath "#{userprofile}"`.chomp
+link File.join(homedir, "UserProfile") do
+  to userprofile_path
+end
+
 %w[
   Documents
   Downloads
