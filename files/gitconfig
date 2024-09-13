@@ -18,7 +18,7 @@
     l = log --oneline --decorate --graph -n10
     ll = !tig
     m = smp
-    o = open
+    o = !"gh browse"
     p = push origin HEAD
     r = !"git status --short | peco | awk '{print $2}' | xargs -r git restore"
     s = !"git branch | awk '!/^\\*/' | peco | xargs -r git switch"
@@ -27,13 +27,16 @@
     st = status --short --branch
     smp = !"git branch --list --format=\"%(refname:short)\" | grep -xF -e main -e master | xargs git switch && git pull"
     sw = switch
+    run = !"gh run"
 
-# see http://qiita.com/kyanny/items/10a57a4f1d2806e3a3b8
-delete-merged-branches = !"git branch --merged | grep -vE '^\\*|main$|master$|develop$' | xargs -r git branch -d"
+    # see http://qiita.com/kyanny/items/10a57a4f1d2806e3a3b8
+    delete-merged-branches = !"git branch --merged | grep -vE '^\\*|main$|master$|develop$' | xargs -r git branch -d"
+    set-upstream = !"git branch --show-current | xargs -r -I{} git branch --set-upstream-to=origin/{}"
 [fetch]
 	prune = true
 [core]
-	editor = vim -X -c \"set fenc=utf8\"
+	#editor = vim -X -c \"set fenc=utf8\"
+	editor = nvim
 	pager = delta
 [init]
 	templatedir = ~/.git_template
@@ -60,3 +63,5 @@ delete-merged-branches = !"git branch --merged | grep -vE '^\\*|main$|master$|de
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[push]
+	autoSetupRemote = true
