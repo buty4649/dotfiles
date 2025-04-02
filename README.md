@@ -6,8 +6,5 @@ dotfiles
 # Usage
 
 ```
-$ mkdir $HOME/bin
-$ curl https://github.com/itamae-kitchen/mitamae/releases/download/v1.6.2/mitamae-x86_64-linux > $HOME/bin/mitamae
-$ export PATH="$HOME/bin:$PATH"
-$ mitamae local roles/linux.rb
+$ curl -s https://raw.githubusercontent.com/buty4649/dotfiles/refs/heads/master/run.sh | bash -
 ```
