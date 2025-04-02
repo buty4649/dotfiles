@@ -11,7 +11,7 @@ else
     exit 1
 fi
 
-MITAME_VERSION=v1.14.0
+MITAME_VERSION=$(curl -s https://api.github.com/repos/itamae-kitchen/mitamae/releases/latest | awk -F: '/"name"/{print $2;exit}' | tr -d '", ')
 SUDO_PROMPT='[local sudo] Password: '
 
 if ! which mitamae > /dev/null; then
