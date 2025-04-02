@@ -15,7 +15,7 @@ user = ENV['USER']
 end
 
 %w[
-  asdf fish-shell lsd rcm
+  fish-shell lsd rcm
 ].each do |name|
   include_recipe "../cookbooks/#{name}"
 end
