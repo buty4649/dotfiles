@@ -20,19 +20,19 @@ end
   include_recipe "../cookbooks/#{name}"
 end
 
-%w[
-  delta
-  direnv
-  fzf
-  ghq
-  github-cli
-  peco
-  ruby
-  starship
-  tmux
-].each do |name|
-  asdf name
-end
+#%w[
+#  delta
+#  direnv
+#  fzf
+#  ghq
+#  github-cli
+#  peco
+#  ruby
+#  starship
+#  tmux
+#].each do |name|
+#  asdf name
+#end
 
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
