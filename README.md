@@ -1,7 +1,8 @@
-dotfiles
+bootstrap
 ========
 
-設定ファイル色々
+開発環境のセットアップするためのbootstrapを行う。
+dotfilesは[buty4649/dotfiles](https://github.com/buty4649/dotfiles)で管理している。
 
 # Usage
 
