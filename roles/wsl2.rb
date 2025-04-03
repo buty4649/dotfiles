@@ -1,43 +1,20 @@
 include_recipe "use_sudo::ubuntu"
 
-
 homedir = ENV['HOME']
 user = ENV['USER']
 
 # libevent-dev,unzip is needed by tmux
-# zlib1g-dev,libssl-dev,libmysqlclient-dev is needed by ruby
+# zlib1g-dev,libssl-dev,libmysqlclient-dev,libffi-dev,libyaml-dev is needed by ruby
 %w[
-  build-essential python3 python-is-python3
-  libevent-dev unzip zlib1g-dev libssl-dev libmysqlclient-dev
+  build-essential
+  libevent-dev unzip
+  zlib1g-dev libssl-dev libmysqlclient-dev libffi-dev libyaml-dev
   wslu
 ].each do |name|
   package name
 end
 
-%w[
-  fish-shell lsd rcm
-].each do |name|
-  include_recipe "../cookbooks/#{name}"
-end
-
-# rubyのビルドに必要
-%w[libffi-dev libyaml-dev].each do |name|
-  package name
-end
-
-#%w[
-#  delta
-#  direnv
-#  fzf
-#  ghq
-#  github-cli
-#  peco
-#  ruby
-#  starship
-#  tmux
-#].each do |name|
-#  asdf name
-#end
+include_recipe "../cookbooks/mise"
 
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
