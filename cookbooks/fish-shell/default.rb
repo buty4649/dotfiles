@@ -1,5 +1,5 @@
-execute 'add-apt-repository ppa:fish-shell/release-3' do
-  command 'sudo add-apt-repository -y ppa:fish-shell/release-3 && apt-get update -qq'
+execute 'add-apt-repository ppa:fish-shell/release-4' do
+  command 'sudo add-apt-repository -y ppa:fish-shell/release-4 && apt-get update -qq'
   not_if 'grep -qR fish-shell /etc/apt/sources.list.d'
 end
 
