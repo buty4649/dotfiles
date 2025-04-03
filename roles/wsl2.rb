@@ -14,6 +14,7 @@ user = ENV['USER']
   package name
 end
 
+include_recipe "../cookbooks/fish-shell"
 include_recipe "../cookbooks/mise"
 
 # Windows側のディレクトリにシンボリックリンクを張る
