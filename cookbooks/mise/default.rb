@@ -9,34 +9,3 @@ execute 'Download mise binary' do
   command "wget -O #{output} #{url} && chmod +x #{output}"
   only_if "test ! -f #{output}"
 end
-
-define :asdf do
-  name = params[:name]
-  version = params[:version] || "latest"
-  asdf_script = File.join(ENV['HOME'], ".asdf", "asdf.sh")
-
-  execute "Install asdf plugin: #{name}" do
-    command <<__COMMAND__
-bash -c "
-  source #{asdf_script}
-  asdf plugin add #{name}
-"
-__COMMAND__
-    not_if <<__COMMAND__
-bash -c "
-  source #{asdf_script}
-  asdf plugin list | grep -q '^#{name}$'
-"
-__COMMAND__
-  end
-
-  execute "Install asdf package: #{name}" do
-    command <<__COMMAND__
-bash -c "
-  source #{asdf_script}
-  asdf install #{name} #{version}
-  asdf global #{name} #{version}
-"
-__COMMAND__
-  end
-end
