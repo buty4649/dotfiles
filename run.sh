@@ -27,9 +27,9 @@ fi
 REPODIR="${HOME}/src/github.com/buty4649"
 mkdir -p "$REPODIR"
 cd "$REPODIR"
-if [ ! -d dotfiles ]; then
-    git clone --recursive --depth 1 https://github.com/buty4649/dotfiles.git
+if [ ! -d bootstrap ]; then
+    git clone --recursive --depth 1 https://github.com/buty4649/bootstrap.git
 fi
-cd dotfiles
+cd bootstrap
 
 mitamae local $* roles/${PLATFORM}.rb
