@@ -20,6 +20,11 @@ end
   include_recipe "../cookbooks/#{name}"
 end
 
+# rubyのビルドに必要
+%w[libffi-dev libyaml-dev].each do |name|
+  package name
+end
+
 #%w[
 #  delta
 #  direnv
