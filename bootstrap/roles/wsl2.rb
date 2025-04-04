@@ -16,7 +16,7 @@ end
 
 include_recipe "../cookbooks/fish-shell"
 include_recipe "../cookbooks/mise"
-include_recipe "../cookbooks/yadm"
+include_recipe "../cookbooks/chezmoi"
 
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
