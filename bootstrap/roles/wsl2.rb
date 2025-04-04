@@ -20,6 +20,11 @@ include_recipe "../cookbooks/fish-shell"
 include_recipe "../cookbooks/chezmoi"
 include_recipe "../cookbooks/mise"
 
+execute 'Set default editor to vim' do
+  command 'sudo update-alternatives --set editor /usr/bin/vim.basic'
+  not_if 'update-alternatives --query editor | grep "Value: /usr/bin/vim.basic"'
+end
+
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
 userprofile_path = `wslpath "#{userprofile}"`.chomp
