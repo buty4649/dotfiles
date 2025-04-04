@@ -12,11 +12,16 @@ else
 fi
 
 if ! which mitamae > /dev/null; then
-    MITAMAE_BIN="$HOME/.local/bin/mitamae"
+    BIN_DIR="$HOME/.local/bin"
+    mkdir -p "$BIN_DIR"
+
+    MITAMAE_BIN="${BIN_DIR}/mitamae"
     MITAME_VERSION=$(curl -s https://api.github.com/repos/itamae-kitchen/mitamae/releases/latest | awk -F: '/"name"/{print $2;exit}' | tr -d '", ')
 
     curl -sL "https://github.com/itamae-kitchen/mitamae/releases/download/${MITAME_VERSION}/mitamae-x86_64-linux" -o "$MITAMAE_BIN"
     chmod +x "$MITAMAE_BIN"
+
+    export PATH="${BIN_DIR}:$PATH"
 fi
 
 if ! which git > /dev/null; then
