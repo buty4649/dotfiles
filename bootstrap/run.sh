@@ -24,12 +24,11 @@ if ! which git > /dev/null; then
     sudo -p "$SUDO_PROMPT" apt-get install -y git
 fi
 
-REPODIR="${HOME}/src/github.com/buty4649"
+REPODIR="${HOME}/.local/share/chezmoi"
 mkdir -p "$REPODIR"
-cd "$REPODIR"
-if [ ! -d bootstrap ]; then
-    git clone --recursive --depth 1 https://github.com/buty4649/bootstrap.git
+if [ ! -d "$REPODIR" ]; then
+    git clone --recursive --depth 1 https://github.com/buty4649/dotfiles.git "$REPODIR"
 fi
-cd bootstrap
+cd "${REPODIR}/bootstrap"
 
 mitamae local $* roles/${PLATFORM}.rb
