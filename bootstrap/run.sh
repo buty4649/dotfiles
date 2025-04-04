@@ -11,13 +11,12 @@ else
     exit 1
 fi
 
-MITAME_VERSION=$(curl -s https://api.github.com/repos/itamae-kitchen/mitamae/releases/latest | awk -F: '/"name"/{print $2;exit}' | tr -d '", ')
-SUDO_PROMPT='[local sudo] Password: '
-
 if ! which mitamae > /dev/null; then
-    sudo -p "$SUDO_PROMPT" bash -c "\
-        wget -O /usr/local/bin/mitamae https://github.com/itamae-kitchen/mitamae/releases/download/${MITAME_VERSION}/mitamae-x86_64-linux && \
-        chmod +x /usr/local/bin/mitamae"
+    MITAMAE_BIN="$HOME/.local/bin/mitamae"
+    MITAME_VERSION=$(curl -s https://api.github.com/repos/itamae-kitchen/mitamae/releases/latest | awk -F: '/"name"/{print $2;exit}' | tr -d '", ')
+
+    curl -sL "https://github.com/itamae-kitchen/mitamae/releases/download/${MITAME_VERSION}/mitamae-x86_64-linux" -o "$MITAMAE_BIN"
+    chmod +x "$MITAMAE_BIN"
 fi
 
 if ! which git > /dev/null; then
@@ -31,4 +30,5 @@ if [ ! -d "$REPODIR" ]; then
 fi
 cd "${REPODIR}/bootstrap"
 
+SUDO_PROMPT='[local sudo] Password: '
 mitamae local $* roles/${PLATFORM}.rb
