@@ -20,8 +20,6 @@ if ! which mitamae > /dev/null; then
 
     curl -sL "https://github.com/itamae-kitchen/mitamae/releases/download/${MITAME_VERSION}/mitamae-x86_64-linux" -o "$MITAMAE_BIN"
     chmod +x "$MITAMAE_BIN"
-
-    export PATH="${BIN_DIR}:$PATH"
 fi
 
 if ! which git > /dev/null; then
@@ -35,4 +33,4 @@ fi
 cd "${REPODIR}/bootstrap"
 
 SUDO_PROMPT='[local sudo] Password: '
-mitamae local $* roles/${PLATFORM}.rb
+PATH=$HOME/.local/bin:$PATH mitamae local $* roles/${PLATFORM}.rb
