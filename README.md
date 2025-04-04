@@ -7,5 +7,5 @@ dotfilesは[buty4649/dotfiles](https://github.com/buty4649/dotfiles)で管理し
 # Usage
 
 ```
-$ curl -s https://raw.githubusercontent.com/buty4649/dotfiles/refs/heads/master/run.sh | bash -
+$ curl -s https://raw.githubusercontent.com/buty4649/bootstrap/refs/heads/master/run.sh | bash -
 ```
