@@ -9,3 +9,7 @@ execute 'Download mise binary' do
   command "wget -O #{output} #{url} && chmod +x #{output}"
   only_if "test ! -f #{output}"
 end
+
+execute 'mise install' do
+  command 'mise install'
+end
