@@ -3,6 +3,8 @@ include_recipe "use_sudo::ubuntu"
 homedir = ENV['HOME']
 user = ENV['USER']
 
+include_recipe "../cookbooks/apt"
+
 # libevent-dev,unzip is needed by tmux
 # zlib1g-dev,libssl-dev,libmysqlclient-dev,libffi-dev,libyaml-dev is needed by ruby
 %w[
