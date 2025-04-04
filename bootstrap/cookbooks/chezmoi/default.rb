@@ -9,3 +9,13 @@ execute 'Download chezmoi binary' do
   command "wget -O #{output} #{url} && chmod +x #{output}"
   only_if "test ! -f #{output}"
 end
+
+execute 'Initialize && Bootstrap chezmoi' do
+  chezmoi_config = File.join(homedir, ".config", "chezmoi", "chezmoi.toml")
+  command <<-__COMMAND__
+    chezmoi init
+    chezmoi apply
+    chezmoi git -- remote set-url origin git@github.com:buty4649/dotfiles.git
+  __COMMAND__
+  only_if "test ! -f #{chezmoi_config}"
+end
