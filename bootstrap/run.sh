@@ -24,7 +24,6 @@ if ! which git > /dev/null; then
 fi
 
 REPODIR="${HOME}/.local/share/chezmoi"
-mkdir -p "$REPODIR"
 if [ ! -d "$REPODIR" ]; then
     git clone --recursive --depth 1 https://github.com/buty4649/dotfiles.git "$REPODIR"
 fi
