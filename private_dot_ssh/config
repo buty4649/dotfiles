@@ -1,0 +1,14 @@
+Include ~/.ssh/config.d/*.conf
+
+Host *
+    User buty4649
+    ServerAliveInterval 300
+    TCPKeepAlive yes
+    ForwardAgent yes
+    ControlMaster auto
+    ControlPath ~/.cache/ssh_%r@%h:%p
+    ControlPersist 30
+    AddKeysToAgent yes
+    SendEnv LANG LC_*
+    GSSAPIAuthentication no
+    IdentitiesOnly yes
