@@ -11,4 +11,3 @@ Host *
     AddKeysToAgent yes
     SendEnv LANG LC_*
     GSSAPIAuthentication no
-    IdentitiesOnly yes
