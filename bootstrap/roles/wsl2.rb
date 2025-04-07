@@ -25,6 +25,9 @@ execute 'Set default editor to vim' do
   not_if 'update-alternatives --query editor | grep "Value: /usr/bin/vim.basic"'
 end
 
+package 'wl-clipboard'
+package 'age' # chezmoi encryptに必要
+
 # Windows側のディレクトリにシンボリックリンクを張る
 userprofile = `cmd.exe /C "set user" 2> /dev/null | awk -F= '/^USERPROFILE=/{print $2}'`.chomp
 userprofile_path = `wslpath "#{userprofile}"`.chomp
