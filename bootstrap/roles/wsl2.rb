@@ -12,6 +12,8 @@ include_recipe "../cookbooks/apt"
   libevent-dev unzip
   zlib1g-dev libssl-dev libmysqlclient-dev libffi-dev libyaml-dev
   wslu
+
+  bind9-dnsutils
 ].each do |name|
   package name
 end
@@ -19,6 +21,7 @@ end
 include_recipe "../cookbooks/fish-shell"
 include_recipe "../cookbooks/chezmoi"
 include_recipe "../cookbooks/mise"
+include_recipe "../cookbooks/docker"
 
 execute 'Set default editor to vim' do
   command 'sudo update-alternatives --set editor /usr/bin/vim.basic'
