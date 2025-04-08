@@ -1,0 +1,4 @@
+--height 10
+--cycle
+--layout=reverse
+--bind 'ctrl-t:toggle'
