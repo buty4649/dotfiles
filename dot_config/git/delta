@@ -1,0 +1,4 @@
+[delta]
+    plus-style = green bold
+    line-numbers = true
+    diff-highlight = true
