@@ -9,8 +9,6 @@ include_recipe "../cookbooks/apt"
   libevent-dev unzip
   zlib1g-dev libssl-dev libmysqlclient-dev libffi-dev libyaml-dev
   wslu
-
-  bind9-dnsutils
 ].each do |name|
   package name
 end
