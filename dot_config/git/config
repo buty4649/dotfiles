@@ -1,3 +1,32 @@
 [user]
 	email = buty4649@gmail.com
 	name = buty4649
+[alias]
+	br = branch
+	cm = commit -v
+	d = diff
+	g = grep
+	l = log --graph --decorate -n10 --pretty='format:%C(auto)%h%d %s %C(blue)[%an]'
+	p = push
+	sc = switch -c
+	st = status --short --branch
+	sw = switch
+[core]
+	pager = delta
+[fetch]
+	prune = true
+[init]
+	templatedir = ~/.config/git/templates
+[grep]
+	extendedRegexp = true
+	lineNumber = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+
+[include]
+	path = ~/.config/git/ghq
+	path = ~/.config/git/tig
+	path = ~/.config/git/delta
+	path = ~/.config/git/local
