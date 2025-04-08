@@ -22,6 +22,7 @@ if ! which mitamae > /dev/null; then
     chmod +x "$MITAMAE_BIN"
 fi
 
+SUDO_PROMPT='[local sudo] Password: '
 if ! which git > /dev/null; then
     sudo -p "$SUDO_PROMPT" apt-get install -y git
 fi
@@ -32,5 +33,7 @@ if [ ! -d "$REPODIR" ]; then
 fi
 cd "${REPODIR}/bootstrap"
 
-SUDO_PROMPT='[local sudo] Password: '
-PATH=$HOME/.local/bin:$PATH mitamae local $* roles/${PLATFORM}.rb
+PATH=$HOME/.local/bin:$PATH mitamae local -y <(set +x; cat <<YAML) $* roles/${PLATFORM}.rb
+username: ${USER}
+homedir: ${HOME}
+YAML
