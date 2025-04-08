@@ -7,6 +7,7 @@
 	d = diff
 	g = grep
 	l = log --graph --decorate -n10 --pretty='format:%C(auto)%h%d %s %C(blue)[%an]'
+	ll = !gitui
 	p = push
 	sc = switch -c
 	st = status --short --branch
