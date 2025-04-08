@@ -1,6 +1,6 @@
 homedir = ENV['HOME']
 bindir = File.join(homedir, ".local", "bin")
-chezmoi_version = JSON.parse(`wget -O- https://api.github.com/repos/twpayne/chezmoi/releases/latest`)["name"]
+chezmoi_version = JSON.parse(`wget -qO- https://api.github.com/repos/twpayne/chezmoi/releases/latest`)["name"]
 
 directory bindir
 execute 'Download chezmoi binary' do

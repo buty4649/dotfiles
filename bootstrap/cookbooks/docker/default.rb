@@ -1,3 +1,5 @@
+homedir = node['homedir']
+
 %w[
   ca-certificates curl
 ].each do |name|
@@ -7,7 +9,8 @@ end
 directory '/etc/apt/keyrings'
 
 execute 'Add gpg key' do
-  command 'sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc'
+  command 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc'
+  sudo true
   not_if 'test -f /etc/apt/keyrings/docker.asc'
 end
 
@@ -18,11 +21,11 @@ end
 arch = run_command('dpkg --print-architecture').stdout.chomp
 codename = run_command('lsb_release -cs | tail -1').stdout.chomp
 
-execute 'Add /etc/apt/sources.list.d/docker.list' do
-  command <<-__FILE__
-    echo "deb [arch=#{arch} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu #{codename} stable" | sudo tee /etc/apt/sources.list.d/docker.list
+file '/etc/apt/sources.list.d/docker.list' do
+  content <<-__FILE__
+    deb [arch=#{arch} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu #{codename} stable
   __FILE__
-  not_if 'test -f /etc/apt/sources.list.d/docker.list'
+  sudo true
   notifies :run, 'execute[apt-get update]', :immediately
 end
 
@@ -51,4 +54,5 @@ end
 
 execute 'dockerd-rootless-setuptool.sh install' do
   command 'dockerd-rootless-setuptool.sh install'
+  not_if 'test -f #{homedir}/.config/systemd/user/docker.service'
 end

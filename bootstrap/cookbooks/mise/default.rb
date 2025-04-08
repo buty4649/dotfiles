@@ -1,6 +1,6 @@
 homedir = ENV['HOME']
 bindir = File.join(homedir, ".local", "bin")
-mise_version = JSON.parse(`wget -O- https://api.github.com/repos/jdx/mise/releases/latest`)["name"]
+mise_version = JSON.parse(`wget -qO- https://api.github.com/repos/jdx/mise/releases/latest`)["name"]
 
 directory bindir
 execute 'Download mise binary' do
@@ -12,4 +12,5 @@ end
 
 execute 'mise install' do
   command 'mise install'
+  not_if "mise list --installed --no-header | grep -q ."
 end

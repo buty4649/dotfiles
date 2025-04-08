@@ -33,7 +33,8 @@ if [ ! -d "$REPODIR" ]; then
 fi
 cd "${REPODIR}/bootstrap"
 
-PATH=$HOME/.local/bin:$PATH mitamae local -y <(set +x; cat <<YAML) $* roles/${PLATFORM}.rb
+PATH=$HOME/.local/bin:$PATH mitamae local $* roles/${PLATFORM}.rb -y <(cat <<__YAML__
 username: ${USER}
 homedir: ${HOME}
-YAML
+__YAML__
+)
