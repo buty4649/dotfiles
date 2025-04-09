@@ -1,0 +1,51 @@
+#!/bin/bash
+
+if ! type -p fzf > /dev/null; then
+  echo -e "\033[31mfzf is not installed\033[0m"
+  exit 1
+fi
+
+fzf_preview() {
+    fzf --ansi --disabled --no-sort --no-input --tmux center,100%,80% --style=full --layout=reverse \
+      --bind 'down,j:down' \
+      --bind 'up,k:up' \
+      --bind 'ctrl-j:preview-down' \
+      --bind 'ctrl-k:preview-up' \
+      --bind 'ctrl-d:preview-page-down' \
+      --bind 'ctrl-u:preview-page-up' \
+      --bind 'q,ctrl-c:abort' \
+      --preview "$1"
+}
+
+fzf_log() {
+  git log --pretty='format:%C(auto)%h %s' --color |
+    fzf_preview 'git log -p {1} -n1 --color --decorate --stat \
+                --pretty="format:%C(auto)commit: %H%nref: %D%nauthor: %an <%ae>%ndate: %ad%n"'
+}
+
+fzf_add() {
+  git status --short |
+    fzf --multi --ansi --no-sort --tmux center,100%,80% --style=full --layout=reverse \
+      --bind 'ctrl-a:select-all' \
+      --bind 'ctrl-x:deselect-all' \
+      --bind 'ctrl-d:preview-page-down' \
+      --bind 'ctrl-u:preview-page-up' \
+      --preview 'git diff --color {2}' | \
+   awk '{print $2}' | xargs git add
+}
+
+ACTION=$1; shift
+OPTS=$@
+
+case $ACTION in
+  add)
+    fzf_add
+    ;;
+  log)
+    fzf_log
+    ;;
+  *)
+    echo -e "\033[31mInvalid action\033[0m"
+    exit 1
+    ;;
+esac
