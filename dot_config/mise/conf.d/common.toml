@@ -1,0 +1,26 @@
+[tools]
+aws-cli = "latest"
+aws-vault = "latest"
+bat = "latest"
+delta = "latest"
+fzf = "latest"
+ghq = "latest"
+github-cli = "latest"
+go = "latest"
+jq = "latest"
+kubectl = "latest"
+lsd = "latest"
+neovim = "latest"
+node = "latest"
+peco = "latest"
+python = "latest"
+rf = "latest"
+ruby = ["latest", "mruby-3.3.0"]
+starship = "latest"
+usage = "latest"
+yq = "latest"
+
+[alias]
+neovim = "asdf:https://github.com/richin13/asdf-neovim"
+rf = "asdf:https://github.com/buty4649/asdf-rf"
+
