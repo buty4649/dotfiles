@@ -5,16 +5,43 @@ if ! type -p fzf > /dev/null; then
   exit 1
 fi
 
+GIT_FZF_SELECT_KEY_BINDINGS=`cat <<_BINDING_
+--bind ctrl-a:select-all
+--bind ctrl-x:deselect-all
+--bind ctrl-d:preview-page-down
+--bind ctrl-u:preview-page-up
+_BINDING_`
+
+GIT_FZF_HEIGHT_OPTS=${GIT_FZF_HEIGHT_OPTS:=--tmux center,100%,80%}
+GIT_FZF_DEFAULT_OPTS=${GIT_FZF_DEFAULT_OPTS:=--ansi --no-sort --style=full --layout=reverse $GIT_FZF_HEIGHT_OPTS}
+
+GIT_FZF_FILE_PREVIEW_COMMAND=${GIT_FZF_FILE_PREVIEW_COMMAND:-"bat -f"}
+GIT_FZF_DIFF_COMMAND=${GIT_FZF_DIFF_COMMAND:-"git diff --color"}
+
+fzf_preview_select() {
+  fzf $GIT_FZF_DEFAULT_OPTS $GIT_FZF_SELECT_KEY_BINDINGS --preview "$1"
+}
+
+fzf_preview_multi_select() {
+  fzf $GIT_FZF_DEFAULT_OPTS $GIT_FZF_SELECT_KEY_BINDINGS --multi --preview "$1"
+}
+
 fzf_preview() {
-    fzf --ansi --disabled --no-sort --no-input --tmux center,100%,80% --style=full --layout=reverse \
-      --bind 'down,j:down' \
-      --bind 'up,k:up' \
-      --bind 'ctrl-j:preview-down' \
-      --bind 'ctrl-k:preview-up' \
-      --bind 'ctrl-d:preview-page-down' \
-      --bind 'ctrl-u:preview-page-up' \
-      --bind 'q,ctrl-c:abort' \
-      --preview "$1"
+  fzf $GIT_FZF_DEFAULT_OPTS --disabled --no-input \
+    --bind 'down,j:down' \
+    --bind 'up,k:up' \
+    --bind 'ctrl-j:preview-down' \
+    --bind 'ctrl-k:preview-up' \
+    --bind 'ctrl-d:preview-page-down' \
+    --bind 'ctrl-u:preview-page-up' \
+    --bind 'q,ctrl-c:abort' \
+    --preview "$1"
+}
+
+fzf_add() {
+  git status --short |
+    fzf_preview_multi_select "$GIT_FZF_DIFF_COMMAND {2}" | \
+   awk '{print $2}' | xargs -r git add
 }
 
 fzf_log() {
@@ -23,27 +50,21 @@ fzf_log() {
                 --pretty="format:%C(auto)commit: %H%nref: %D%nauthor: %an <%ae>%ndate: %ad%n"'
 }
 
-fzf_add() {
-  git status --short |
-    fzf --multi --ansi --no-sort --tmux center,100%,80% --style=full --layout=reverse \
-      --bind 'ctrl-a:select-all' \
-      --bind 'ctrl-x:deselect-all' \
-      --bind 'ctrl-d:preview-page-down' \
-      --bind 'ctrl-u:preview-page-up' \
-      --preview 'git diff --color {2}' | \
-   awk '{print $2}' | xargs git add
+fzf_ls_file() {
+  git ls-files | fzf_preview "$GIT_FZF_FILE_PREVIEW_COMMAND {1}"
+}
+
+fzf_switch() {
+  git branch --sort=-committerdate | grep -v '^\*' | fzf -1 | xargs -r git switch
 }
 
 ACTION=$1; shift
 OPTS=$@
-
 case $ACTION in
-  add)
-    fzf_add
-    ;;
-  log)
-    fzf_log
-    ;;
+  add) fzf_add ;;
+  log) fzf_log ;;
+  ls-files) fzf_ls_file ;;
+  switch) fzf_switch ;;
   *)
     echo -e "\033[31mInvalid action\033[0m"
     exit 1

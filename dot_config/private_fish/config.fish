@@ -28,6 +28,8 @@ abbr -a k kubectl
 
 alias ls='lsd'
 alias c='cursor -n'
+alias grep="rf -g"
+alias cat='bat'
 
 bind \cf forward-word
 bind \cg forward-char
@@ -35,6 +37,7 @@ bind \cg forward-char
 set -g fish_color_cancel normal
 
 set -x FZF_DEFAULT_OPTS_FILE ~/.config/fzf/opts
+set -x BAT_PAGER "less -FXR"
 
 function each
     if string match -q -e "{}" -- $argv

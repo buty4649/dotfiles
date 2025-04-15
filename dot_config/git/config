@@ -2,13 +2,18 @@
 	email = buty4649@gmail.com
 	name = buty4649
 [alias]
+	a = fzf add
 	br = branch
 	cm = commit -v
 	d = diff
 	g = grep
 	l = log --graph --decorate -n10 --pretty='format:%C(auto)%h%d %s %C(blue)[%an]'
-	ll = !gitui
+	ll = fzf log
+	ls = fzf list-files
+	m = !"git branch --list --format=\"%(refname:short)\" | grep -xF -e main -e master | xargs git switch && git pull"
+	o = !"gh browse"
 	p = push
+	s = fzf switch
 	sc = switch -c
 	st = status --short --branch
 	sw = switch
@@ -31,3 +36,12 @@
 	path = ~/.config/git/tig
 	path = ~/.config/git/delta
 	path = ~/.config/git/local
+[credential "https://git.pepabo.com"]
+	helper = 
+	helper = !/home/ykky/.local/share/mise/installs/github-cli/2.69.0/gh_2.69.0_linux_amd64/bin/gh auth git-credential
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/ykky/.local/share/mise/installs/github-cli/2.69.0/gh_2.69.0_linux_amd64/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/ykky/.local/share/mise/installs/github-cli/2.69.0/gh_2.69.0_linux_amd64/bin/gh auth git-credential

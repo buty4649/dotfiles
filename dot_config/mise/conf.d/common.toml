@@ -7,6 +7,7 @@ fzf = "latest"
 ghq = "latest"
 github-cli = "latest"
 go = "latest"
+goreleaser = "latest"
 jq = "latest"
 kubectl = "latest"
 lsd = "latest"
@@ -23,4 +24,4 @@ yq = "latest"
 [alias]
 neovim = "asdf:https://github.com/richin13/asdf-neovim"
 rf = "asdf:https://github.com/buty4649/asdf-rf"
-
+goreleaser = "asdf:https://github.com/kforsthoevel/asdf-goreleaser.git"
