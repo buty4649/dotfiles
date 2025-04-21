@@ -54,6 +54,11 @@ fzf_ls_file() {
   git ls-files | fzf_preview "$GIT_FZF_FILE_PREVIEW_COMMAND {1}"
 }
 
+fzf_restore() {
+  git -c color.ui=never status --short | awk '/^.[MDU] +/{print $2}' | xargs git status --short |
+    fzf_preview_multi_select "$GIT_FZF_DIFF_COMMAND {2}" | awk '{print $2}' | xargs -r -t git restore
+}
+
 fzf_switch() {
   git branch --sort=-committerdate | grep -v '^\*' | fzf -1 | xargs -r git switch
 }
@@ -64,6 +69,7 @@ case $ACTION in
   add) fzf_add ;;
   log) fzf_log ;;
   ls-files) fzf_ls_file ;;
+  restore) fzf_restore ;;
   switch) fzf_switch ;;
   *)
     echo -e "\033[31mInvalid action\033[0m"
