@@ -5,6 +5,7 @@
 	a = fzf add
 	br = branch
 	cm = commit -v
+	cma = cm --amend
 	d = diff
 	g = grep
 	l = log --graph --decorate -n10 --pretty='format:%C(auto)%h%d %s %C(blue)[%an]'
@@ -36,9 +37,6 @@
 	path = ~/.config/git/tig
 	path = ~/.config/git/delta
 	path = ~/.config/git/local
-[credential "https://git.pepabo.com"]
-	helper = 
-	helper = !/home/ykky/.local/share/mise/installs/github-cli/2.69.0/gh_2.69.0_linux_amd64/bin/gh auth git-credential
 [credential "https://github.com"]
 	helper = 
 	helper = !/home/ykky/.local/share/mise/installs/github-cli/2.69.0/gh_2.69.0_linux_amd64/bin/gh auth git-credential
