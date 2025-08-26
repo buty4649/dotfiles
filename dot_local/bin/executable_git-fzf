@@ -1,4 +1,26 @@
 #!/bin/bash
+#
+# MIT License
+#
+# Copyright (c) 2025 buty4649
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 if ! type -p fzf > /dev/null; then
   echo -e "\033[31mfzf is not installed\033[0m"
@@ -40,8 +62,11 @@ _fzf() {
 }
 
 _preview() {
+  local opts=""
+  [[ -z $ENABLE_INPUT ]] && opts="$opts --disabled --no-input"
+
   BINDING="$GIT_FZF_PREVIEW_KEY_BINDINGS" \
-  EXTRA_OPTS="$EXTRA_OPTS --disabled --no-input" \
+  EXTRA_OPTS="$EXTRA_OPTS $opts" \
   _fzf "$1"
 }
 
@@ -56,7 +81,7 @@ _preview_multi_select() {
 _diff() {
   git -c color.status=always status --short | $* '
     line=$(tr -d "$'\''" <<<"{}")
-    if [[ $line =~ ^\?\? ]]; then
+    if [[ $line =~ ^(\?\?|A) ]]; then
       '"$GIT_FZF_FILE_PREVIEW_COMMAND"' {-1}
     else
       cached=$([[ $line =~ ^M ]] && echo --cached)
@@ -70,13 +95,17 @@ fzf_add() {
 }
 
 fzf_log() {
-  git log --pretty='format:%C(auto)%h %s' --color "$*" |
-    _preview 'git log -p {1} -n1 --color --decorate --stat \
+  local pretty='format:%C(auto)%h %s'
+  if [[ -n "$*" ]]; then
+    git log --pretty="$pretty" --color "$*"
+  else
+    git log --pretty="$pretty" --color
+  fi | ENABLE_INPUT=y _preview 'git log -p {1} -n1 --color --decorate --stat \
                 --pretty="format:%C(auto)commit: %H%nref: %D%nauthor: %an <%ae>%ndate: %ad%n"'
 }
 
 fzf_ls_files() {
-  git ls-files | _preview "$GIT_FZF_FILE_PREVIEW_COMMAND {1}"
+  git ls-files | ENABLE_INPUT=y _preview "$GIT_FZF_FILE_PREVIEW_COMMAND {1}"
 }
 
 fzf_restore() {
